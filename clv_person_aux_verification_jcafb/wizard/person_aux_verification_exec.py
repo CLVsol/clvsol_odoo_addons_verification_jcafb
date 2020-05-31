@@ -30,13 +30,13 @@ class PersonAuxVerificationExecute(models.TransientModel):
         store=False
     )
 
-    @api.multi
+    # @api.multi
     @api.depends('person_aux_ids')
     def _compute_count_persons_aux(self):
         for r in self:
             r.count_persons_aux = len(r.person_aux_ids)
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -49,7 +49,7 @@ class PersonAuxVerificationExecute(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_person_aux_verification_exec(self):
         self.ensure_one()
 

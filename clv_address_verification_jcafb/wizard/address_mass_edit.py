@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ class AddressMassEdit(models.TransientModel):
         string='Address Verification Execute'
     )
 
-    @api.multi
+    # @api.multi
     def do_address_mass_edit(self):
         self.ensure_one()
 

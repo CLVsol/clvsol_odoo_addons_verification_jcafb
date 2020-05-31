@@ -30,13 +30,13 @@ class FamilyVerificationExecute(models.TransientModel):
         store=False
     )
 
-    @api.multi
+    # @api.multi
     @api.depends('family_ids')
     def _compute_count_families(self):
         for r in self:
             r.count_families = len(r.family_ids)
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -49,7 +49,7 @@ class FamilyVerificationExecute(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_family_verification_exec(self):
         self.ensure_one()
 

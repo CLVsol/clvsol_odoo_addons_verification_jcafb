@@ -46,7 +46,7 @@ class Address(models.Model):
         store=True
     )
 
-    @api.multi
+    # @api.multi
     def _compute_verification_outcome_ids_and_count(self):
         for record in self:
 
@@ -72,7 +72,7 @@ class Address(models.Model):
                     verification_marker_names = verification_marker_names + ', ' + verification_marker.name
             r.verification_marker_names = verification_marker_names
 
-    @api.multi
+    # @api.multi
     def address_verification_exec(self):
 
         VerificationTemplate = self.env['clv.verification.template']

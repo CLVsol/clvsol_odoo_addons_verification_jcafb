@@ -19,7 +19,7 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
         string='Persons (Aux)'
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +41,7 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def do_person_aux_related_person_create(self):
         self.ensure_one()
 

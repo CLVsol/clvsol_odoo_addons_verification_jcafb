@@ -30,13 +30,13 @@ class AddressAuxVerificationExecute(models.TransientModel):
         store=False
     )
 
-    @api.multi
+    # @api.multi
     @api.depends('address_aux_ids')
     def _compute_count_addresses_aux(self):
         for r in self:
             r.count_addresses_aux = len(r.address_aux_ids)
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -49,7 +49,7 @@ class AddressAuxVerificationExecute(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_address_aux_verification_exec(self):
         self.ensure_one()
 

@@ -19,7 +19,7 @@ class AddressAuxRelateAddressUpdt(models.TransientModel):
         string='Addresses (Aux)'
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +41,7 @@ class AddressAuxRelateAddressUpdt(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def do_address_aux_related_address_updt(self):
         self.ensure_one()
 
