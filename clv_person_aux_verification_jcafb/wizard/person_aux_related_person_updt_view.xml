@@ -38,10 +38,9 @@
     <act_window 
         id="clv_person_aux_related_person_updt_action"
         name="Person (Aux) Related Person Update"
-        src_model="clv.person_aux"
+        binding_model="clv.person_aux"
         res_model="clv.person_aux.related_person_updt"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
