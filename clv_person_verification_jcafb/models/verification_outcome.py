@@ -150,7 +150,7 @@ class VerificationOutcome(models.Model):
 
         if model_object.contact_info_is_unavailable:
 
-            if model_object.street is not False:
+            if model_object.street_name is not False:
 
                 outcome_info = _('"Contact Information" should not be set.\n')
                 state = self._get_verification_outcome_state(state, 'Error (L0)')
@@ -165,7 +165,7 @@ class VerificationOutcome(models.Model):
                 outcome_info += _('"Person Code" is missing.\n')
                 state = self._get_verification_outcome_state(state, 'Error (L0)')
 
-            if model_object.street is False:
+            if model_object.street_name is False:
 
                 outcome_info += _('"Contact Information" is missing.\n')
                 state = self._get_verification_outcome_state(state, 'Error (L0)')
@@ -173,18 +173,18 @@ class VerificationOutcome(models.Model):
             if model_object.reg_state not in ['done', 'canceled']:
 
                 street_patern = PartnerEntityStreetPattern.search([
-                    ('street', '=', model_object.street),
+                    ('street', '=', model_object.street_name),
                     ('district', '=', model_object.district),
                 ])
 
                 if street_patern.street is False:
 
                     outcome_info += _('"Street Pattern" was not recognised.') + \
-                        ' (' + str(model_object.street) + ' [' + str(model_object.district) + '])\n'
+                        ' (' + str(model_object.street_name) + ' [' + str(model_object.district) + '])\n'
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
                 if (model_object.zip is False) or \
-                   (model_object.street is False) or \
+                   (model_object.street_name is False) or \
                    (model_object.district is False) or \
                    (model_object.country_id is False) or \
                    (model_object.state_id is False) or \
@@ -194,7 +194,7 @@ class VerificationOutcome(models.Model):
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
                 if (model_object.zip is False) or \
-                   (model_object.street is False) or \
+                   (model_object.street_name is False) or \
                    (model_object.street_number is False) or \
                    (model_object.street2 is False) or \
                    (model_object.district is False) or \
@@ -256,7 +256,7 @@ class VerificationOutcome(models.Model):
             if ref_address.id is not False:
 
                 if (model_object.zip != ref_address.zip) or \
-                   (model_object.street != ref_address.street) or \
+                   (model_object.street_name != ref_address.street_name) or \
                    (model_object.street_number != ref_address.street_number) or \
                    (model_object.street2 != ref_address.street2) or \
                    (model_object.district != ref_address.district) or \
@@ -311,7 +311,7 @@ class VerificationOutcome(models.Model):
             if family.id is not False:
 
                 if (model_object.zip != family.zip) or \
-                   (model_object.street != family.street) or \
+                   (model_object.street_name != family.street_name) or \
                    (model_object.street_number != family.street_number) or \
                    (model_object.street2 != family.street2) or \
                    (model_object.district != family.district) or \
