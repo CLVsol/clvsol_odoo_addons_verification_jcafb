@@ -21,11 +21,11 @@
         sequence="40"
         action="clv_verification.clv_verification_schedule_action"/>
 
-    <!--menuitem name="Batches" id="clv_verification.menu_verification_verification_verification_batches" 
+    <menuitem name="Batches" id="clv_verification.menu_verification_verification_verification_batches" 
         parent="clv_verification.menu_verification_verification_verification"
         groups="clv_verification.group_user"
         sequence="50"
-        action="clv_verification.clv_verification_batch_action"/-->
+        action="clv_verification.clv_verification_batch_action"/>
 
     <menuitem name="Verification" id="clv_verification.menu_verification_config_verification"
         parent="clv_base.menu_verification_config"
@@ -44,10 +44,10 @@
         sequence="30"
         action="clv_verification.clv_verification_template_action"/>
 
-    <!--menuitem name="Batch Members" id="clv_verification.menu_verification_config_verification_batch_members" 
+    <menuitem name="Batch Members" id="clv_verification.menu_verification_config_verification_batch_members" 
         parent="clv_verification.menu_verification_config_verification"
         groups="clv_verification.group_user"
         sequence="60"
-        action="clv_verification.clv_verification_batch_member_actions"/-->
+        action="clv_verification.clv_verification_batch_member_actions"/>
 
 </odoo>
