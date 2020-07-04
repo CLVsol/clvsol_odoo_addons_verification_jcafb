@@ -10,16 +10,16 @@
         sequence="10"
         action="clv_verification.clv_verification_outcome_action"/>
 
-    <!--menuitem name="Verification" id="clv_verification.menu_verification_verification_verification"
+    <menuitem name="Verification" id="clv_verification.menu_verification_verification_verification"
         parent="clv_base.menu_verification_verification"
         groups="clv_verification.group_user"
-        sequence="20"/-->
+        sequence="20"/>
 
-    <!--menuitem name="Schedules" id="clv_verification.menu_verification_verification_verification_schedules" 
+    <menuitem name="Schedules" id="clv_verification.menu_verification_verification_verification_schedules" 
         parent="clv_verification.menu_verification_verification_verification"
         groups="clv_verification.group_user"
         sequence="40"
-        action="clv_verification.clv_verification_schedule_action"/-->
+        action="clv_verification.clv_verification_schedule_action"/>
 
     <!--menuitem name="Batches" id="clv_verification.menu_verification_verification_verification_batches" 
         parent="clv_verification.menu_verification_verification_verification"
