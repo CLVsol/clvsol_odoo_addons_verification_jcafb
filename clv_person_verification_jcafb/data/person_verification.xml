@@ -7,40 +7,50 @@
 	<record id="clv_person_person_verification_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.person&quot;&quot;&quot;"/>
-		<!--field name="method" eval="&quot;&quot;&quot;_object_verification&quot;&quot;&quot;"/-->
 		<field name="action" eval="&quot;&quot;&quot;_person_verification&quot;&quot;&quot;"/>
-		<!--field name="verification_disable_check_missing" eval="False"/-->
 	</record>
 	 
-	<!--record id="clv_person_person_verification_schedule" model="clv.verification.schedule">
+	<record id="clv_person_person_verification_schedule" model="clv.verification.schedule">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification]&quot;&quot;&quot;"/>
 		<field name="template_id" eval="clv_person_person_verification_template"/>
-	</record-->
+	</record>
+	 
+	<record id="clv_verification_batch_member_clv_person" model="clv.verification.batch.member">
+		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
+		<field name="ref_id" ref="clv_person_person_verification_schedule"/>
+	</record>
 	 
 	<record id="clv_person_person_verification_ref_address_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification_ref_address]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.person&quot;&quot;&quot;"/>
-		<!--field name="method" eval="&quot;&quot;&quot;_object_verification&quot;&quot;&quot;"/-->
 		<field name="action" eval="&quot;&quot;&quot;_person_verification_ref_address&quot;&quot;&quot;"/>
-		<!--field name="verification_disable_check_missing" eval="False"/-->
 	</record>
 	 
-	<!--record id="clv_person_person_verification_ref_address_schedule" model="clv.verification.schedule">
+	 
+	<record id="clv_person_person_verification_ref_address_schedule" model="clv.verification.schedule">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification_ref_address]&quot;&quot;&quot;"/>
 		<field name="template_id" eval="clv_person_person_verification_ref_address_template"/>
-	</record-->
+	</record>
+	 
+	<record id="clv_verification_batch_member_clv_person_ref_address" model="clv.verification.batch.member">
+		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
+		<field name="ref_id" ref="clv_person_person_verification_ref_address_schedule"/>
+	</record>
 	 
 	<record id="clv_person_person_verification_family_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification_family]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.person&quot;&quot;&quot;"/>
-		<!--field name="method" eval="&quot;&quot;&quot;_object_verification&quot;&quot;&quot;"/-->
 		<field name="action" eval="&quot;&quot;&quot;_person_verification_family&quot;&quot;&quot;"/>
-		<!--field name="verification_disable_check_missing" eval="False"/-->
 	</record>
 	 
-	<!--record id="clv_person_person_verification_family_schedule" model="clv.verification.schedule">
+	<record id="clv_person_person_verification_family_schedule" model="clv.verification.schedule">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification_family]&quot;&quot;&quot;"/>
 		<field name="template_id" eval="clv_person_person_verification_family_template"/>
-	</record-->
+	</record>
+	 
+	<record id="clv_verification_batch_member_clv_person_family" model="clv.verification.batch.member">
+		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
+		<field name="ref_id" ref="clv_person_person_verification_family_schedule"/>
+	</record>
 	 
 </odoo>
