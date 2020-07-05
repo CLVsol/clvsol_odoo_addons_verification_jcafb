@@ -16,7 +16,7 @@
     ],
     'data': [
         'views/verification_menu_view.xml',
-        # 'data/verification.xml',
+        'data/verification.xml',
     ],
     'demo': [],
     'test': [],
