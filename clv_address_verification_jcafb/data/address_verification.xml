@@ -10,10 +10,30 @@
 		<field name="action" eval="&quot;&quot;&quot;_address_verification&quot;&quot;&quot;"/>
 	</record>
 	 
+	<record id="clv_address_address_verification_schedule" model="clv.verification.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.address [_address_verification]&quot;&quot;&quot;"/>
+		<field name="template_id" eval="clv_address_address_verification_template"/>
+	</record>
+	 
+	<record id="clv_verification_batch_member_clv_address" model="clv.verification.batch.member">
+		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
+		<field name="ref_id" ref="clv_address_address_verification_schedule"/>
+	</record>
+	 
 	<record id="clv_address_address_verification_associated_persons_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.address [_address_verification_associated_persons]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.address&quot;&quot;&quot;"/>
 		<field name="action" eval="&quot;&quot;&quot;_address_verification_associated_persons&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_address_address_verification_associated_persons_schedule" model="clv.verification.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.address [_address_verification_associated_persons]&quot;&quot;&quot;"/>
+		<field name="template_id" eval="clv_address_address_verification_associated_persons_template"/>
+	</record>
+	 
+	<record id="clv_verification_batch_member_clv_address_associated_persons" model="clv.verification.batch.member">
+		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
+		<field name="ref_id" ref="clv_address_address_verification_associated_persons_schedule"/>
 	</record>
 	 
 </odoo>
