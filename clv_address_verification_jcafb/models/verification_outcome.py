@@ -46,7 +46,6 @@ class Address(models.Model):
         store=True
     )
 
-    # @api.multi
     def _compute_verification_outcome_ids_and_count(self):
         for record in self:
 
@@ -72,8 +71,7 @@ class Address(models.Model):
                     verification_marker_names = verification_marker_names + ', ' + verification_marker.name
             r.verification_marker_names = verification_marker_names
 
-    # @api.multi
-    def address_verification_exec(self):
+    def _address_verification_exec(self):
 
         VerificationTemplate = self.env['clv.verification.template']
         VerificationOutcome = self.env['clv.verification.outcome']
@@ -86,6 +84,7 @@ class Address(models.Model):
 
             verification_templates = VerificationTemplate.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
+                ('action', '!=', False),
             ])
 
             for verification_template in verification_templates:
@@ -105,7 +104,6 @@ class Address(models.Model):
                     verification_outcome_values['res_id'] = address.id
                     verification_outcome_values['res_last_update'] = address['__last_update']
                     verification_outcome_values['state'] = 'Unknown'
-                    # verification_outcome_values['method'] = verification_template.method
                     verification_outcome_values['action'] = verification_template.action
                     _logger.info(u'>>>>>>>>>>>>>>> %s %s',
                                  '(verification_outcome_values):', verification_outcome_values)
