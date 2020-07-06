@@ -46,7 +46,6 @@ class Person(models.Model):
         store=True
     )
 
-    # @api.multi
     def _compute_verification_outcome_ids_and_count(self):
         for record in self:
 
@@ -72,8 +71,7 @@ class Person(models.Model):
                     verification_marker_names = verification_marker_names + ', ' + verification_marker.name
             r.verification_marker_names = verification_marker_names
 
-    # @api.multi
-    def person_verification_exec(self):
+    def _person_verification_exec(self):
 
         VerificationTemplate = self.env['clv.verification.template']
         VerificationOutcome = self.env['clv.verification.outcome']
@@ -86,6 +84,7 @@ class Person(models.Model):
 
             verification_templates = VerificationTemplate.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
+                ('action', '!=', False),
             ])
 
             for verification_template in verification_templates:
