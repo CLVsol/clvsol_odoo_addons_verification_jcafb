@@ -10,31 +10,11 @@
 		<field name="action" eval="&quot;&quot;&quot;_family_verification&quot;&quot;&quot;"/>
 	</record>
 	 
-	<record id="clv_family_family_verification_schedule" model="clv.verification.schedule">
-		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification]&quot;&quot;&quot;"/>
-		<field name="template_id" eval="clv_family_family_verification_template"/>
-	</record>
-	 
-	<!--record id="clv_verification_batch_member_clv_family" model="clv.verification.batch.member">
-		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
-		<field name="ref_id" ref="clv_family_family_verification_schedule"/>
-	</record-->
-	 
 	<record id="clv_family_family_verification_ref_address_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_ref_address]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.family&quot;&quot;&quot;"/>
 		<field name="action" eval="&quot;&quot;&quot;_family_verification_ref_address&quot;&quot;&quot;"/>
 	</record>
-	 
-	<record id="clv_family_family_verification_ref_address_schedule" model="clv.verification.schedule">
-		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_ref_address]&quot;&quot;&quot;"/>
-		<field name="template_id" eval="clv_family_family_verification_ref_address_template"/>
-	</record>
-	 
-	<!--record id="clv_verification_batch_member_clv_family_ref_address" model="clv.verification.batch.member">
-		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
-		<field name="ref_id" ref="clv_family_family_verification_ref_address_schedule"/>
-	</record-->
 	 
 	<record id="clv_family_family_verification_associated_persons_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_associated_persons]&quot;&quot;&quot;"/>
@@ -42,30 +22,20 @@
 		<field name="action" eval="&quot;&quot;&quot;_family_verification_associated_persons&quot;&quot;&quot;"/>
 	</record>
 	 
-	<record id="clv_family_family_verification_associated_persons_schedule" model="clv.verification.schedule">
-		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_associated_persons]&quot;&quot;&quot;"/>
-		<field name="template_id" eval="clv_family_family_verification_associated_persons_template"/>
-	</record>
-	 
-	<!--record id="clv_verification_batch_member_clv_family_associated_persons" model="clv.verification.batch.member">
-		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
-		<field name="ref_id" ref="clv_family_family_verification_associated_persons_schedule"/>
-	</record-->
-	 
-	<record id="clv_family_family_verification_all_template" model="clv.verification.template">
-		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_all]&quot;&quot;&quot;"/>
+	<record id="clv_family_family_verification_exec_template" model="clv.verification.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_exec]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.family&quot;&quot;&quot;"/>
-		<field name="method" eval="&quot;&quot;&quot;_family_verification_all&quot;&quot;&quot;"/>
+		<field name="method" eval="&quot;&quot;&quot;_family_verification_exec&quot;&quot;&quot;"/>
 	</record>
 	 
-	<record id="clv_family_family_verification_all_schedule" model="clv.verification.schedule">
-		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_all]&quot;&quot;&quot;"/>
-		<field name="template_id" eval="clv_family_family_verification_all_template"/>
+	<record id="clv_family_family_verification_exec_schedule" model="clv.verification.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.family [_family_verification_exec]&quot;&quot;&quot;"/>
+		<field name="template_id" eval="clv_family_family_verification_exec_template"/>
 	</record>
 	 
-	<record id="clv_verification_batch_member_clv_family_all" model="clv.verification.batch.member">
+	<record id="clv_verification_batch_member_clv_family_exec" model="clv.verification.batch.member">
 		<field name="verification_batch_id" ref="clv_verification_jcafb.clv_verification_batch_default"/>
-		<field name="ref_id" ref="clv_family_family_verification_all_schedule"/>
+		<field name="ref_id" ref="clv_family_family_verification_exec_schedule"/>
 	</record>
 	 
 </odoo>
