@@ -46,7 +46,6 @@ class PersonAux(models.Model):
         store=True
     )
 
-    # @api.multi
     def _compute_verification_outcome_ids_and_count(self):
         for record in self:
 
@@ -72,8 +71,7 @@ class PersonAux(models.Model):
                     verification_marker_names = verification_marker_names + ', ' + verification_marker.name
             r.verification_marker_names = verification_marker_names
 
-    # @api.multi
-    def person_aux_verification_exec(self):
+    def _person_aux_verification_exec(self):
 
         VerificationTemplate = self.env['clv.verification.template']
         VerificationOutcome = self.env['clv.verification.outcome']
@@ -86,6 +84,7 @@ class PersonAux(models.Model):
 
             verification_templates = VerificationTemplate.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
+                ('action', '!=', False),
             ])
 
             for verification_template in verification_templates:
@@ -510,61 +509,6 @@ class VerificationOutcome(models.Model):
 
                 outcome_info = _('Missing "Address".\n')
                 state = self._get_verification_outcome_state(state, 'Error (L1)')
-
-        if outcome_info == '':
-            outcome_info = False
-
-        self._object_verification_outcome_updt(
-            verification_outcome, state, outcome_info, date_verification, model_object
-        )
-
-    def _person_aux_verification_family_aux(self, verification_outcome, model_object):
-
-        _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (model_object):', model_object.name)
-
-        date_verification = datetime.now()
-
-        family_aux = model_object.family_aux_id
-
-        state = 'Ok'
-        outcome_info = ''
-
-        if model_object.family_aux_is_unavailable:
-
-            if family_aux.id is not False:
-
-                outcome_info = _('"Family (Aux)" should not be set\n.')
-                state = self._get_verification_outcome_state(state, 'Error (L0)')
-
-            # outcome_info = _('"Family (Aux) is Unavailable" should not be set.\n')
-            # state = self._get_verification_outcome_state(state, 'Error (L0)')
-
-        else:
-
-            if family_aux.id is not False:
-
-                if (model_object.zip != family_aux.zip) or \
-                   (model_object.street_name != family_aux.street_name) or \
-                   (model_object.street_number != family_aux.street_number) or \
-                   (model_object.street2 != family_aux.street2) or \
-                   (model_object.district != family_aux.district) or \
-                   (model_object.country_id != family_aux.country_id) or \
-                   (model_object.state_id != family_aux.state_id) or \
-                   (model_object.city_id != family_aux.city_id):
-
-                    outcome_info += _('Family (Aux) "Contact Information (Address)" mismatch.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
-
-                if model_object.family_aux_id.verification_state != 'Ok':
-
-                    outcome_info += _('Family (Aux) "Verification State" is "') + \
-                        model_object.family_aux_id.verification_state + '".\n'
-                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
-
-            else:
-
-                outcome_info = _('Missing "Family (Aux)".\n')
-                state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
         if outcome_info == '':
             outcome_info = False
