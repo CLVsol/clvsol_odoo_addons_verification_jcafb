@@ -66,9 +66,9 @@ class AddressAuxRelateAddressUpdt(models.TransientModel):
 
                     vals['zip'] = address_aux.zip
 
-                if (address_aux.street != related_address.street):
+                if (address_aux.street_name != related_address.street_name):
 
-                    vals['street'] = address_aux.street
+                    vals['street_name'] = address_aux.street_name
 
                 if (address_aux.street_number != related_address.street_number):
 

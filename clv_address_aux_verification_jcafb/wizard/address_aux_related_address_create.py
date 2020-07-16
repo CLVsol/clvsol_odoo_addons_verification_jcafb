@@ -56,7 +56,7 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
                 if address_aux.related_address_id.id is False:
 
                     address = Address.search([
-                        ('street', '=', address_aux.street),
+                        ('street_name', '=', address_aux.street_name),
                         ('street_number', '=', address_aux.street_number),
                         ('street2', '=', address_aux.street2),
                         ('district', '=', address_aux.district),
@@ -82,9 +82,9 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
 
                             vals['zip'] = address_aux.zip
 
-                        if (address_aux.street is not False):
+                        if (address_aux.street_name is not False):
 
-                            vals['street'] = address_aux.street
+                            vals['street_name'] = address_aux.street_name
 
                         if (address_aux.street_number is not False):
 
