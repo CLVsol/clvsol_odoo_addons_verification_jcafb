@@ -151,9 +151,9 @@ class PersonAuxRelatePersonUpdt(models.TransientModel):
 
                         vals['zip'] = person_aux.zip
 
-                    if (person_aux.street != related_person.street):
+                    if (person_aux.street_name != related_person.street_name):
 
-                        vals['street'] = person_aux.street
+                        vals['street_name'] = person_aux.street_name
 
                     if (person_aux.street_number != related_person.street_number):
 

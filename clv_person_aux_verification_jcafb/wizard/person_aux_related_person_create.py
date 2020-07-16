@@ -103,9 +103,9 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
 
                             vals['zip'] = person_aux.zip
 
-                        if (person_aux.street is not False):
+                        if (person_aux.street_name is not False):
 
-                            vals['street'] = person_aux.street
+                            vals['street_name'] = person_aux.street_name
 
                         if (person_aux.street_number is not False):
 
