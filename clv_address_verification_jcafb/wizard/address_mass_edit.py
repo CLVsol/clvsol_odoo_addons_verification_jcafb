@@ -65,6 +65,6 @@ class AddressMassEdit(models.TransientModel):
                 address.verification_marker_ids = m2m_list
 
             if self.address_verification_exec:
-                address.address_verification_exec()
+                address._address_verification_exec()
 
         return True
