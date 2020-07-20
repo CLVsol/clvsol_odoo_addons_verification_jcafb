@@ -94,6 +94,6 @@ class PersonMassEdit(models.TransientModel):
                 person.verification_marker_ids = m2m_list
 
             if self.person_verification_exec:
-                person.person_verification_exec()
+                person._person_verification_exec()
 
         return True
