@@ -69,24 +69,24 @@ class PersonAuxMassEdit(models.TransientModel):
          ], string='Family:', default=False, readonly=False, required=False
     )
 
-    family_aux_is_unavailable = fields.Boolean(
-        string='Family (Aux) is unavailable'
-    )
-    family_aux_is_unavailable_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Family (Aux) is unavailable:', default=False, readonly=False, required=False
-    )
+    # family_aux_is_unavailable = fields.Boolean(
+    #     string='Family (Aux) is unavailable'
+    # )
+    # family_aux_is_unavailable_selection = fields.Selection(
+    #     [('set', 'Set'),
+    #      ('remove', 'Remove'),
+    #      ], string='Family (Aux) is unavailable:', default=False, readonly=False, required=False
+    # )
 
-    family_aux_id = fields.Many2one(
-        comodel_name='clv.address',
-        string='Family (Aux)'
-    )
-    family_aux_id_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Family (Aux):', default=False, readonly=False, required=False
-    )
+    # family_aux_id = fields.Many2one(
+    #     comodel_name='clv.address',
+    #     string='Family (Aux)'
+    # )
+    # family_aux_id_selection = fields.Selection(
+    #     [('set', 'Set'),
+    #      ('remove', 'Remove'),
+    #      ], string='Family (Aux):', default=False, readonly=False, required=False
+    # )
 
     contact_info_is_unavailable = fields.Boolean(
         string='Contact Information is unavailable'
@@ -158,15 +158,15 @@ class PersonAuxMassEdit(models.TransientModel):
             if self.family_id_selection == 'remove':
                 person_aux.family_id = False
 
-            if self.family_aux_is_unavailable_selection == 'set':
-                person_aux.family_aux_is_unavailable = self.family_aux_is_unavailable
-            if self.family_aux_is_unavailable_selection == 'remove':
-                person_aux.family_aux_is_unavailable = False
+            # if self.family_aux_is_unavailable_selection == 'set':
+            #     person_aux.family_aux_is_unavailable = self.family_aux_is_unavailable
+            # if self.family_aux_is_unavailable_selection == 'remove':
+            #     person_aux.family_aux_is_unavailable = False
 
-            if self.family_aux_id_selection == 'set':
-                person_aux.family_aux_id = self.family_aux_id
-            if self.family_aux_id_selection == 'remove':
-                person_aux.family_aux_id = False
+            # if self.family_aux_id_selection == 'set':
+            #     person_aux.family_aux_id = self.family_aux_id
+            # if self.family_aux_id_selection == 'remove':
+            #     person_aux.family_aux_id = False
 
             if self.contact_info_is_unavailable_selection == 'set':
                 person_aux.contact_info_is_unavailable = self.contact_info_is_unavailable
@@ -201,6 +201,6 @@ class PersonAuxMassEdit(models.TransientModel):
                 person_aux.verification_marker_ids = m2m_list
 
             if self.person_aux_verification_exec:
-                person_aux.person_aux_verification_exec()
+                person_aux._person_aux_verification_exec()
 
         return True
