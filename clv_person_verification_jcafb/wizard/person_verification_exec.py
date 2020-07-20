@@ -117,6 +117,6 @@ class PersonVerificationExecute(models.TransientModel):
 
         for person in self.person_ids:
 
-            person._person_aux_verification_exec()
+            person._person_verification_exec()
 
         return True
