@@ -65,6 +65,6 @@ class FamilyMassEdit(models.TransientModel):
                 family.verification_marker_ids = m2m_list
 
             if self.family_verification_exec:
-                family.family_verification_exec()
+                family._family_verification_exec()
 
         return True
