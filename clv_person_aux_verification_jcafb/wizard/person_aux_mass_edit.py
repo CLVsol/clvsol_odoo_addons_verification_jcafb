@@ -41,7 +41,7 @@ class PersonAuxMassEdit(models.TransientModel):
     )
 
     ref_address_aux_id = fields.Many2one(
-        comodel_name='clv.address',
+        comodel_name='clv.address_aux',
         string='Address (Aux)'
     )
     ref_address_aux_id_selection = fields.Selection(
@@ -134,7 +134,7 @@ class PersonAuxMassEdit(models.TransientModel):
                 person_aux.ref_address_is_unavailable = False
 
             if self.ref_address_id_selection == 'set':
-                person_aux.ref_address_id = self.ref_address_id
+                person_aux.ref_address_id = self.ref_address_id.id
             if self.ref_address_id_selection == 'remove':
                 person_aux.ref_address_id = False
 
@@ -144,7 +144,7 @@ class PersonAuxMassEdit(models.TransientModel):
                 person_aux.ref_address_aux_is_unavailable = False
 
             if self.ref_address_aux_id_selection == 'set':
-                person_aux.ref_address_aux_id = self.ref_address_aux_id
+                person_aux.ref_address_aux_id = self.ref_address_aux_id.id
             if self.ref_address_aux_id_selection == 'remove':
                 person_aux.ref_address_aux_id = False
 
