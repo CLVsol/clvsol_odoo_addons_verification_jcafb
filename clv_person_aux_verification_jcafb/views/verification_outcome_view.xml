@@ -38,7 +38,28 @@
                             </button>
                         </group>
                     </group>
-                    <field name="verification_outcome_ids" colspan="4" nolabel="1"/>
+                    <field name="verification_outcome_ids" colspan="4" nolabel="1">
+                        <tree name="verification" string="Verification Outcome"
+                            decoration-muted="state in('Unknown','Missing')"
+                            decoration-info="state=='Updated'"
+                            decoration-warning="state in('Warning (L0)','Warning (L1)','Warning (L2)')"
+                            decoration-danger="state in('Error (L0)','Error (L1)','Error (L2)')"
+                            decoration-success="state=='Ok'"
+                            decoration-it="state in('Unknown','Missing')"
+                            decoration-bf="state in('Warning (L0)','Error (L0)','Warning (L1)','Error (L1)','Warning (L2)','Error (L2)','Ok')">
+                            <!--field name="model"/-->
+                            <!--field name="res_id"/-->
+                            <field name="res_last_update"/>
+                            <!--field name="reference"/-->
+                            <!--field name="reference_name"/-->
+                            <!--field name="method"/-->
+                            <field name="action"/>
+                            <field name="date_verification"/>
+                            <field name="state"/>
+                            <field name="outcome_info"/>
+                            <!--field name="id"/-->
+                        </tree>
+                    </field>
                 </page>
             </page>
         </field>
