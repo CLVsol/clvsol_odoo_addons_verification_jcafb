@@ -192,17 +192,17 @@ class VerificationOutcome(models.Model):
                     outcome_info += _('Please, verify "Contact Information (Street)" data.\n')
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
-                if (model_object.zip is False) or \
-                   (model_object.street_name is False) or \
-                   (model_object.street_number is False) or \
-                   (model_object.street2 is False) or \
-                   (model_object.district is False) or \
-                   (model_object.country_id is False) or \
-                   (model_object.state_id is False) or \
-                   (model_object.city_id is False):
+                # if (model_object.zip is False) or \
+                #    (model_object.street_name is False) or \
+                #    (model_object.street_number is False) or \
+                #    (model_object.street2 is False) or \
+                #    (model_object.district is False) or \
+                #    (model_object.country_id is False) or \
+                #    (model_object.state_id is False) or \
+                #    (model_object.city_id is False):
 
-                    outcome_info += _('Please, verify "Contact Information (Complement)" data.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                #     outcome_info += _('Please, verify "Contact Information (Complement)" data.\n')
+                #     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
         if model_object.reg_state not in ['ready', 'done', 'canceled']:
 
@@ -448,6 +448,11 @@ class VerificationOutcome(models.Model):
 
                     outcome_info += _('Address (Aux) "Verification State" is "') + \
                         model_object.ref_address_aux_id.verification_state + '".\n'
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
+
+                if (model_object.phase_id != ref_address_aux.phase_id):
+
+                    outcome_info += _('"Phase" has changed.\n')
                     state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
             else:
