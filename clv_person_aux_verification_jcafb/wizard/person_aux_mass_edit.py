@@ -50,6 +50,10 @@ class PersonAuxMassEdit(models.TransientModel):
          ], string='Address (Aux):', default=False, readonly=False, required=False
     )
 
+    get_ref_address_aux_data = fields.Boolean(
+        string='Get Reference Address (Aux) Data'
+    )
+
     family_is_unavailable = fields.Boolean(
         string='Family is unavailable'
     )
@@ -147,6 +151,9 @@ class PersonAuxMassEdit(models.TransientModel):
                 person_aux.ref_address_aux_id = self.ref_address_aux_id.id
             if self.ref_address_aux_id_selection == 'remove':
                 person_aux.ref_address_aux_id = False
+
+            if self.get_ref_address_aux_data:
+                person_aux.do_person_aux_get_ref_address_aux_data()
 
             if self.family_is_unavailable_selection == 'set':
                 person_aux.family_is_unavailable = self.family_is_unavailable
