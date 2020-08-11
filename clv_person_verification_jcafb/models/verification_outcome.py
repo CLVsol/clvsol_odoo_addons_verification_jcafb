@@ -321,6 +321,12 @@ class VerificationOutcome(models.Model):
                     outcome_info += _('Family "Contact Information" mismatch.')
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
+                if model_object.family_id.verification_state != 'Ok':
+
+                    outcome_info += _('Family "Verification State" is "') + \
+                        model_object.family_id.verification_state + '".\n'
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
+
             else:
 
                 outcome_info = _('Missing "Family".')
