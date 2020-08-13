@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -30,7 +30,24 @@ class AddressAuxMassEdit(models.TransientModel):
         string='Address (Aux) Verification Execute'
     )
 
-    # @api.multi
+    @api.model
+    def default_get(self, field_names):
+
+        defaults = super().default_get(field_names)
+
+        value = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.address_aux'),
+            ('parameter', '=', 'mass_edit_address_aux_verification_exec'),
+            ('enabled', '=', True),
+        ]).value
+        address_aux_verification_exec = False
+        if value == 'True':
+            address_aux_verification_exec = True
+
+        defaults['address_aux_verification_exec'] = address_aux_verification_exec
+
+        return defaults
+
     def do_address_aux_mass_edit(self):
         self.ensure_one()
 
