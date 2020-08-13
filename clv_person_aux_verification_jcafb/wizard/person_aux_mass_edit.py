@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -122,7 +122,24 @@ class PersonAuxMassEdit(models.TransientModel):
         string='Person (Aux) Verification Execute'
     )
 
-    # @api.multi
+    @api.model
+    def default_get(self, field_names):
+
+        defaults = super().default_get(field_names)
+
+        value = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.person_aux'),
+            ('parameter', '=', 'mass_edit_person_aux_verification_exec'),
+            ('enabled', '=', True),
+        ]).value
+        person_aux_verification_exec = False
+        if value == 'True':
+            person_aux_verification_exec = True
+
+        defaults['person_aux_verification_exec'] = person_aux_verification_exec
+
+        return defaults
+
     def do_person_aux_mass_edit(self):
         self.ensure_one()
 

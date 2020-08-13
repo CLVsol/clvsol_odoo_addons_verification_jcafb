@@ -16,6 +16,7 @@
     ],
     'data': [
         'data/person_aux_verification.xml',
+        'data/default_value.xml',
         'views/verification_outcome_view.xml',
         'wizard/person_aux_mass_edit_view.xml',
         'wizard/person_aux_verification_exec_view.xml',
