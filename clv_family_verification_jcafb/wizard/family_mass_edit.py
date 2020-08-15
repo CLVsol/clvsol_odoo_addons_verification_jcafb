@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -53,7 +53,24 @@ class FamilyMassEdit(models.TransientModel):
         string='Family Verification Execute'
     )
 
-    # @api.multi
+    @api.model
+    def default_get(self, field_names):
+
+        defaults = super().default_get(field_names)
+
+        value = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.family'),
+            ('parameter', '=', 'mass_edit_family_verification_exec'),
+            ('enabled', '=', True),
+        ]).value
+        family_verification_exec = False
+        if value == 'True':
+            family_verification_exec = True
+
+        defaults['family_verification_exec'] = family_verification_exec
+
+        return defaults
+
     def do_family_mass_edit(self):
         self.ensure_one()
 
