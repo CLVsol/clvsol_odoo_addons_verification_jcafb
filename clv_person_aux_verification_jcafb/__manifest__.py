@@ -22,6 +22,7 @@
         'wizard/person_aux_verification_exec_view.xml',
         'wizard/person_aux_related_person_updt_view.xml',
         'wizard/person_aux_related_person_create_view.xml',
+        'wizard/person_aux_family_updt_view.xml',
     ],
     'demo': [],
     'test': [],
