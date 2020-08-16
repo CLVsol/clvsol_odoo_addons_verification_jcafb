@@ -14,6 +14,12 @@
                 <label for="person_aux_ids"/>
                 <field name="person_aux_ids"/>
                 <group>
+                    <group>
+                        <field name="person_aux_set_code"/>
+                        <field name="person_aux_associate_to_address"/>
+                        <field name="related_person_verification_exec"/>
+                        <field name="person_aux_verification_exec"/>
+                    </group>
                 </group>
                 <footer>
                     <button 

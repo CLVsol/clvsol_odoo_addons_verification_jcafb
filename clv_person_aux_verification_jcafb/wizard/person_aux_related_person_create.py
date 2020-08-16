@@ -19,7 +19,26 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
         string='Persons (Aux)'
     )
 
-    # @api.multi
+    person_aux_set_code = fields.Boolean(
+        string='Person (Aux) Set Code',
+        default=True
+    )
+
+    person_aux_associate_to_address = fields.Boolean(
+        string='Person (Aux) Associate to Address',
+        default=True
+    )
+
+    related_person_verification_exec = fields.Boolean(
+        string='Related Person Verification Execute',
+        default=True,
+    )
+
+    person_aux_verification_exec = fields.Boolean(
+        string='Person (Aux) Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +60,6 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
 
         return defaults
 
-    # @api.multi
     def do_person_aux_related_person_create(self):
         self.ensure_one()
 
@@ -54,6 +72,27 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
             if not person_aux.related_person_is_unavailable:
 
                 if person_aux.related_person_id.id is False:
+
+                    if self.person_aux_set_code:
+                        if person_aux.code is False:
+                            person_aux._person_aux_set_code()
+
+                    if self.person_aux_associate_to_address:
+
+                        Address = self.env['clv.address']
+                        address = False
+                        if person_aux.ref_address_aux_id.id is not False:
+                            address = Address.search([
+                                ('id', '=', person_aux.ref_address_aux_id.related_address_id.id),
+                            ])
+                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'ref_address_id:', address.id)
+
+                            if address.id is not False:
+
+                                data_values = {}
+                                data_values['ref_address_id'] = address.id
+                                _logger.info(u'>>>>>>>>>> %s', data_values)
+                                person_aux.write(data_values)
 
                     person = Person.search([
                         ('name', '=', person_aux.name),
@@ -204,5 +243,16 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
                         values = {}
                         values['related_person_id'] = person.id
                         person_aux.write(values)
+
+            if self.related_person_verification_exec:
+                if person_aux.related_person_id.ref_address_id.id is not False:
+                    person_aux.related_person_id.ref_address_id._address_verification_exec()
+                if person_aux.related_person_id.id is not False:
+                    person_aux.related_person_id._person_verification_exec()
+
+            if self.person_aux_verification_exec:
+                if person_aux.ref_address_aux_id.id is not False:
+                    person_aux.ref_address_aux_id._address_aux_verification_exec()
+                person_aux._person_aux_verification_exec()
 
         return True
