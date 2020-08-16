@@ -19,7 +19,22 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
         string='Addresses (Aux)'
     )
 
-    # @api.multi
+    address_aux_set_code = fields.Boolean(
+        string='Address (Aux) Set Code',
+        default=True,
+        readonly=False
+    )
+
+    related_address_verification_exec = fields.Boolean(
+        string='Related Address Verification Execute',
+        default=True,
+    )
+
+    address_aux_verification_exec = fields.Boolean(
+        string='Address (Aux) Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +56,6 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
 
         return defaults
 
-    # @api.multi
     def do_address_aux_related_address_create(self):
         self.ensure_one()
 
@@ -50,6 +64,10 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
         for address_aux in self.address_aux_ids:
 
             _logger.info(u'%s %s', '>>>>>', address_aux.name)
+
+            if self.address_aux_set_code:
+                if address_aux.code is False:
+                    address_aux._address_aux_set_code()
 
             if not address_aux.related_address_is_unavailable:
 
@@ -167,5 +185,12 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
                         values = {}
                         values['related_address_id'] = address.id
                         address_aux.write(values)
+
+            if self.related_address_verification_exec:
+                if address_aux.related_address_id.id is not False:
+                    address_aux.related_address_id._address_verification_exec()
+
+            if self.address_aux_verification_exec:
+                address_aux._address_aux_verification_exec()
 
         return True

@@ -14,6 +14,11 @@
                 <label for="address_aux_ids"/>
                 <field name="address_aux_ids"/>
                 <group>
+                    <group>
+                        <field name="address_aux_set_code"/>
+                        <field name="related_address_verification_exec"/>
+                        <field name="address_aux_verification_exec"/>
+                    </group>
                 </group>
                 <footer>
                     <button 
