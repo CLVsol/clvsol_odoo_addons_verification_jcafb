@@ -31,6 +31,16 @@ class PersonAuxFamilyUpdt(models.TransientModel):
         readonly=False
     )
 
+    family_verification_exec = fields.Boolean(
+        string='Family Verification Execute',
+        default=True,
+    )
+
+    person_aux_verification_exec = fields.Boolean(
+        string='Person (Aux) Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -61,80 +71,95 @@ class PersonAuxFamilyUpdt(models.TransientModel):
 
             if not person_aux.family_is_unavailable:
 
-                family = person_aux.family_id
-                vals = {}
+                if person_aux.family_id.id is not False:
 
-                if (person_aux.phase_id != family.phase_id):
+                    family = person_aux.family_id
+                    vals = {}
 
-                    vals['phase_id'] = person_aux.phase_id.id
+                    if (person_aux.phase_id != family.phase_id):
 
-                # if (person_aux.state != family.state):
-                if (person_aux.ref_address_id.state != family.state):
+                        vals['phase_id'] = person_aux.phase_id.id
 
-                    # vals['state'] = person_aux.state
-                    vals['state'] = person_aux.ref_address_id.state
+                    # if (person_aux.state != family.state):
+                    if (person_aux.ref_address_id.state != family.state):
 
-                if self.update_contact_info_data:
+                        # vals['state'] = person_aux.state
+                        vals['state'] = person_aux.ref_address_id.state
 
-                    if (person_aux.contact_info_is_unavailable != family.contact_info_is_unavailable):
+                    if self.update_contact_info_data:
 
-                        vals['contact_info_is_unavailable'] = person_aux.contact_info_is_unavailable
+                        if (person_aux.contact_info_is_unavailable != family.contact_info_is_unavailable):
 
-                    if (person_aux.zip != family.zip):
+                            vals['contact_info_is_unavailable'] = person_aux.contact_info_is_unavailable
 
-                        vals['zip'] = person_aux.zip
+                        if (person_aux.zip != family.zip):
 
-                    if (person_aux.street_name != family.street_name):
+                            vals['zip'] = person_aux.zip
 
-                        vals['street_name'] = person_aux.street_name
+                        if (person_aux.street_name != family.street_name):
 
-                    if (person_aux.street_number != family.street_number):
+                            vals['street_name'] = person_aux.street_name
 
-                        vals['street_number'] = person_aux.street_number
+                        if (person_aux.street_number != family.street_number):
 
-                    if (person_aux.street2 != family.street2):
+                            vals['street_number'] = person_aux.street_number
 
-                        vals['street2'] = person_aux.street2
+                        if (person_aux.street2 != family.street2):
 
-                    if (person_aux.district != family.district):
+                            vals['street2'] = person_aux.street2
 
-                        vals['district'] = person_aux.district
+                        if (person_aux.district != family.district):
 
-                    if (person_aux.country_id != family.country_id):
+                            vals['district'] = person_aux.district
 
-                        vals['country_id'] = person_aux.country_id.id
+                        if (person_aux.country_id != family.country_id):
 
-                    if (person_aux.state_id != family.state_id):
+                            vals['country_id'] = person_aux.country_id.id
 
-                        vals['state_id'] = person_aux.state_id.id
+                        if (person_aux.state_id != family.state_id):
 
-                    if (person_aux.city_id != family.city_id):
+                            vals['state_id'] = person_aux.state_id.id
 
-                        vals['city_id'] = person_aux.city_id.id
+                        if (person_aux.city_id != family.city_id):
 
-                    # if (person_aux.phone is not False) and (person_aux.phone != family.phone):
+                            vals['city_id'] = person_aux.city_id.id
 
-                    #     vals['phone'] = person_aux.phone
+                        # if (person_aux.phone is not False) and (person_aux.phone != family.phone):
 
-                    # if (person_aux.mobile is not False) and (person_aux.mobile != family.mobile):
+                        #     vals['phone'] = person_aux.phone
 
-                    #     vals['mobile'] = person_aux.mobile
+                        # if (person_aux.mobile is not False) and (person_aux.mobile != family.mobile):
 
-                if self.update_ref_address_data:
+                        #     vals['mobile'] = person_aux.mobile
 
-                    if (person_aux.ref_address_is_unavailable != family.ref_address_is_unavailable):
+                    if self.update_ref_address_data:
 
-                        vals['ref_address_is_unavailable'] = person_aux.ref_address_is_unavailable
+                        if (person_aux.ref_address_is_unavailable != family.ref_address_is_unavailable):
 
-                    if (person_aux.ref_address_id != family.ref_address_id):
+                            vals['ref_address_is_unavailable'] = person_aux.ref_address_is_unavailable
 
-                        vals['ref_address_id'] = person_aux.ref_address_id.id
+                        if (person_aux.ref_address_id != family.ref_address_id):
 
-                if vals != {}:
+                            vals['ref_address_id'] = person_aux.ref_address_id.id
 
-                    vals['reg_state'] = 'revised'
+                    if vals != {}:
 
-                _logger.info(u'%s %s', '>>>>>>>>>>', vals)
-                family.write(vals)
+                        vals['reg_state'] = 'revised'
+
+                    _logger.info(u'%s %s', '>>>>>>>>>>', vals)
+                    family.write(vals)
+
+            if self.family_verification_exec:
+                if person_aux.family_id.ref_address_id.id is not False:
+                    person_aux.family_id.ref_address_id._address_verification_exec()
+                if person_aux.family_id.id is not False:
+                    person_aux.family_id._family_verification_exec()
+                if person_aux.related_person_id.id is not False:
+                    person_aux.related_person_id._person_verification_exec()
+
+            if self.person_aux_verification_exec:
+                if person_aux.ref_address_aux_id.id is not False:
+                    person_aux.ref_address_aux_id._address_aux_verification_exec()
+                person_aux._person_aux_verification_exec()
 
         return True

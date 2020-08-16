@@ -17,6 +17,8 @@
                     <group>
                         <field name="update_contact_info_data"/>
                         <field name="update_ref_address_data"/>
+                        <field name="family_verification_exec"/>
+                        <field name="person_aux_verification_exec"/>
                     </group>
                 </group>
                 <footer>
