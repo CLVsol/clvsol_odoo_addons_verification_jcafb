@@ -37,7 +37,16 @@ class PersonAuxRelatePersonUpdt(models.TransientModel):
         readonly=False
     )
 
-    # @api.multi
+    related_person_verification_exec = fields.Boolean(
+        string='Related Person Verification Execute',
+        default=True,
+    )
+
+    person_aux_verification_exec = fields.Boolean(
+        string='Person (Aux) Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -59,7 +68,6 @@ class PersonAuxRelatePersonUpdt(models.TransientModel):
 
         return defaults
 
-    # @api.multi
     def do_person_aux_related_person_updt(self):
         self.ensure_one()
 
@@ -213,5 +221,16 @@ class PersonAuxRelatePersonUpdt(models.TransientModel):
 
                 _logger.info(u'%s %s', '>>>>>>>>>>', vals)
                 related_person.write(vals)
+
+            if self.related_person_verification_exec:
+                if person_aux.related_person_id.ref_address_id.id is not False:
+                    person_aux.related_person_id.ref_address_id._address_verification_exec()
+                if person_aux.related_person_id.id is not False:
+                    person_aux.related_person_id._person_verification_exec()
+
+            if self.person_aux_verification_exec:
+                if person_aux.ref_address_aux_id.id is not False:
+                    person_aux.ref_address_aux_id._address_aux_verification_exec()
+                person_aux._person_aux_verification_exec()
 
         return True
