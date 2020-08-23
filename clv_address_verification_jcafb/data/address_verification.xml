@@ -16,6 +16,12 @@
 		<field name="action" eval="&quot;&quot;&quot;_address_verification_associated_persons&quot;&quot;&quot;"/>
 	</record>
 	 
+	<record id="clv_address_address_verification_address_aux_template" model="clv.verification.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.address [_address_verification_address_aux]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.address&quot;&quot;&quot;"/>
+		<field name="action" eval="&quot;&quot;&quot;_address_verification_address_aux&quot;&quot;&quot;"/>
+	</record>
+	 
 	<record id="clv_address_address_verification_exec_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.address [_address_verification_exec]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.address&quot;&quot;&quot;"/>
