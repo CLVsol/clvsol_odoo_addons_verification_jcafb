@@ -16,11 +16,16 @@
 		<field name="action" eval="&quot;&quot;&quot;_person_verification_ref_address&quot;&quot;&quot;"/>
 	</record>
 	 
-	 
 	<record id="clv_person_person_verification_family_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification_family]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.person&quot;&quot;&quot;"/>
 		<field name="action" eval="&quot;&quot;&quot;_person_verification_family&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_person_person_verification_person_aux_template" model="clv.verification.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.person [_person_verification_person_aux]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.person&quot;&quot;&quot;"/>
+		<field name="action" eval="&quot;&quot;&quot;_person_verification_person_aux&quot;&quot;&quot;"/>
 	</record>
 	 
 	<record id="clv_person_person_verification_exec_template" model="clv.verification.template">

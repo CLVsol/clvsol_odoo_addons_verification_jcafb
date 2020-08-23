@@ -344,3 +344,35 @@ class VerificationOutcome(models.Model):
         verification_values['outcome_info'] = outcome_info
         verification_values['state'] = state
         verification_outcome.write(verification_values)
+
+    def _person_verification_person_aux(self, verification_outcome, model_object):
+
+        _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (model_object):', model_object.name)
+
+        date_verification = datetime.now()
+
+        state = 'Ok'
+        outcome_info = ''
+
+        person_aux_ids = model_object.person_aux_ids
+
+        if len(person_aux_ids) == 0:
+            outcome_info = _('Missing related "Person (Aux)" register.')
+            state = self._get_verification_outcome_state(state, 'Error (L0)')
+
+        if len(person_aux_ids) > 1:
+            outcome_info = _('There are more than one related "Person (Aux)" register.')
+            state = self._get_verification_outcome_state(state, 'Error (L0)')
+
+        if outcome_info == '':
+            outcome_info = False
+
+        self._object_verification_outcome_updt(
+            verification_outcome, state, outcome_info, date_verification, model_object
+        )
+
+        verification_values = {}
+        verification_values['date_verification'] = date_verification
+        verification_values['outcome_info'] = outcome_info
+        verification_values['state'] = state
+        verification_outcome.write(verification_values)
