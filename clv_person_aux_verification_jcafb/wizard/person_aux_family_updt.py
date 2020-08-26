@@ -80,11 +80,12 @@ class PersonAuxFamilyUpdt(models.TransientModel):
 
                         vals['phase_id'] = person_aux.phase_id.id
 
-                    # if (person_aux.state != family.state):
-                    if (person_aux.ref_address_id.state != family.state):
-
-                        # vals['state'] = person_aux.state
-                        vals['state'] = person_aux.ref_address_id.state
+                    if person_aux.ref_address_id.id is not False:
+                        if (person_aux.ref_address_id.state != family.state):
+                            vals['state'] = person_aux.ref_address_id.state
+                    else:
+                        if (person_aux.state != family.state):
+                            vals['state'] = person_aux.state
 
                     if self.update_contact_info_data:
 
