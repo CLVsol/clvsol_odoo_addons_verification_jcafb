@@ -557,24 +557,24 @@ class VerificationOutcome(models.Model):
                    (model_object.city_id != family.city_id):
 
                     outcome_info += _('Family "Contact Information (Address)" mismatch.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L2)')
 
                 # if model_object.family_id.verification_state != 'Ok':
 
                 #     outcome_info += _('Family "Verification State" is "') + \
                 #         model_object.family_id.verification_state + '".\n'
-                #     state = self._get_verification_outcome_state(state, 'Warning (L1)')
+                #     state = self._get_verification_outcome_state(state, 'Warning (L2)')
 
                 if model_object.family_id.verification_state != 'Ok':
 
                     outcome_info += _('Family "Verification State" is "') + \
                         model_object.family_id.verification_state + '".\n'
-                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L2)')
 
             else:
 
                 outcome_info = _('Missing "Family".\n')
-                state = self._get_verification_outcome_state(state, 'Warning (L1)')
+                state = self._get_verification_outcome_state(state, 'Error (L2)')
 
         if outcome_info == '':
             outcome_info = False
