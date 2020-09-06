@@ -260,7 +260,7 @@ class VerificationOutcome(models.Model):
                 if (model_object.phase_id != related_address.phase_id):
 
                     outcome_info += _('"Phase" has changed.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 # if (model_object.reg_state != related_address.reg_state):
 
@@ -270,7 +270,7 @@ class VerificationOutcome(models.Model):
                 if (model_object.state != related_address.state):
 
                     outcome_info += _('"State" has changed.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if (model_object.zip != related_address.zip) or \
                    (model_object.street_name != related_address.street_name) or \
