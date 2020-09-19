@@ -359,3 +359,37 @@ class VerificationOutcome(models.Model):
         verification_values['outcome_info'] = outcome_info
         verification_values['state'] = state
         verification_outcome.write(verification_values)
+
+    def _address_aux_verification_associated_persons_aux(self, verification_outcome, model_object):
+
+        _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (model_object):', model_object.name)
+
+        date_verification = datetime.now()
+
+        state = 'Ok'
+        outcome_info = ''
+
+        PersonAux = self.env['clv.person_aux']
+
+        address_aux_associated_persons_aux = PersonAux.search([
+            ('ref_address_aux_id', '=', model_object.id),
+        ])
+
+        associated_person_aux_list = []
+
+        for address_aux_associated_person_aux in address_aux_associated_persons_aux:
+
+            associated_person_aux_list.append(address_aux_associated_person_aux.id)
+
+            if model_object.phase_id.id != address_aux_associated_person_aux.phase_id.id:
+
+                outcome_info += _('Associated Person (Aux) "Phase" mismatch.') + \
+                    ' (' + address_aux_associated_person_aux.name + \
+                    ' [' + address_aux_associated_person_aux.code + '])\n'
+                state = self._get_verification_outcome_state(state, 'Warning (L1)')
+
+        verification_values = {}
+        verification_values['date_verification'] = date_verification
+        verification_values['outcome_info'] = outcome_info
+        verification_values['state'] = state
+        verification_outcome.write(verification_values)
