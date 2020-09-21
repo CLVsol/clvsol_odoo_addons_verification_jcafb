@@ -316,7 +316,7 @@ class VerificationOutcome(models.Model):
 
                 outcome_info += _('Associated Person "Address" mismatch.') + \
                     ' (' + family_associated_person.name + ' [' + family_associated_person.code + '])\n'
-                state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
         if model_object.ref_address_id.id is not False:
 
@@ -331,7 +331,7 @@ class VerificationOutcome(models.Model):
 
                     outcome_info += _('Missing Associated Person.') + \
                         ' (' + ref_address_associated_person.name + ' [' + ref_address_associated_person.code + '])\n'
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
         verification_values = {}
         verification_values['date_verification'] = date_verification
