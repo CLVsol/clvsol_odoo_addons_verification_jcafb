@@ -299,7 +299,7 @@ class VerificationOutcome(models.Model):
 
             if family.id is not False:
 
-                outcome_info = _('"Family" should not be set\n.')
+                outcome_info = _('"Family" should not be set.\n')
                 state = self._get_verification_outcome_state(state, 'Error (L0)')
 
             # outcome_info = _('"Family is Unavailable" should not be set.\n')
