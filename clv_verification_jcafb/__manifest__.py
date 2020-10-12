@@ -15,7 +15,6 @@
         'clv_base_jcafb',
     ],
     'data': [
-        'views/verification_menu_view.xml',
         'data/verification.xml',
     ],
     'demo': [],
