@@ -98,7 +98,7 @@ class PersonVerificationExecute(models.TransientModel):
     #             if action_call:
 
     #                 verification_outcome.state = 'Unknown'
-    #                 verification_outcome.outcome_text = False
+    #                 verification_outcome.outcome_info = False
 
     #                 exec(action_call)
 
