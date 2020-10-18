@@ -120,7 +120,7 @@ class Address(models.Model):
                 if action_call:
 
                     verification_outcome.state = 'Unknown'
-                    verification_outcome.outcome_text = False
+                    verification_outcome.outcome_info = False
 
                     exec(action_call)
 
@@ -167,18 +167,18 @@ class VerificationOutcome(models.Model):
 
                 street_patern = PartnerEntityStreetPattern.search([
                     ('street', '=', model_object.street_name),
-                    ('district', '=', model_object.district),
+                    ('street2', '=', model_object.street2),
                 ])
 
                 if street_patern.street is False:
 
                     outcome_info += _('"Street Pattern" was not recognised.') + \
-                        ' (' + str(model_object.street_name) + ' [' + str(model_object.district) + '])\n'
+                        ' (' + str(model_object.street_name) + ' [' + str(model_object.street2) + '])\n'
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
                 if (model_object.zip is False) or \
                    (model_object.street_name is False) or \
-                   (model_object.district is False) or \
+                   (model_object.street2 is False) or \
                    (model_object.country_id is False) or \
                    (model_object.state_id is False) or \
                    (model_object.city_id is False):
@@ -189,8 +189,8 @@ class VerificationOutcome(models.Model):
                 # if (model_object.zip is False) or \
                 #    (model_object.street_name is False) or \
                 #    (model_object.street_number is False) or \
+                #    (model_object.street_number2 is False) or \
                 #    (model_object.street2 is False) or \
-                #    (model_object.district is False) or \
                 #    (model_object.country_id is False) or \
                 #    (model_object.state_id is False) or \
                 #    (model_object.city_id is False):
