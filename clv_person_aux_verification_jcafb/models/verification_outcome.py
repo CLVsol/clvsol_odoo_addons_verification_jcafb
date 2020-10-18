@@ -121,7 +121,7 @@ class PersonAux(models.Model):
                 if action_call:
 
                     verification_outcome.state = 'Unknown'
-                    verification_outcome.outcome_text = False
+                    verification_outcome.outcome_info = False
 
                     exec(action_call)
 
@@ -173,18 +173,18 @@ class VerificationOutcome(models.Model):
 
                 street_patern = PartnerEntityStreetPattern.search([
                     ('street', '=', model_object.street_name),
-                    ('district', '=', model_object.district),
+                    ('street2', '=', model_object.street2),
                 ])
 
                 if street_patern.street is False:
 
                     outcome_info += _('"Street Pattern" was not recognised.') + \
-                        ' (' + str(model_object.street_name) + ' [' + str(model_object.district) + '])\n'
+                        ' (' + str(model_object.street_name) + ' [' + str(model_object.street2) + '])\n'
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
                 if (model_object.zip is False) or \
                    (model_object.street_name is False) or \
-                   (model_object.district is False) or \
+                   (model_object.street2 is False) or \
                    (model_object.country_id is False) or \
                    (model_object.state_id is False) or \
                    (model_object.city_id is False):
@@ -195,8 +195,8 @@ class VerificationOutcome(models.Model):
                 # if (model_object.zip is False) or \
                 #    (model_object.street_name is False) or \
                 #    (model_object.street_number is False) or \
+                #    (model_object.street_number2 is False) or \
                 #    (model_object.street2 is False) or \
-                #    (model_object.district is False) or \
                 #    (model_object.country_id is False) or \
                 #    (model_object.state_id is False) or \
                 #    (model_object.city_id is False):
@@ -318,8 +318,8 @@ class VerificationOutcome(models.Model):
                 if (model_object.zip != related_person.zip) or \
                    (model_object.street_name != related_person.street_name) or \
                    (model_object.street_number != related_person.street_number) or \
+                   (model_object.street_number2 != related_person.street_number2) or \
                    (model_object.street2 != related_person.street2) or \
-                   (model_object.district != related_person.district) or \
                    (model_object.country_id != related_person.country_id) or \
                    (model_object.state_id != related_person.state_id) or \
                    (model_object.city_id != related_person.city_id):
@@ -435,8 +435,8 @@ class VerificationOutcome(models.Model):
                 if (model_object.zip != ref_address_aux.zip) or \
                    (model_object.street_name != ref_address_aux.street_name) or \
                    (model_object.street_number != ref_address_aux.street_number) or \
+                   (model_object.street_number2 != ref_address_aux.street_number2) or \
                    (model_object.street2 != ref_address_aux.street2) or \
-                   (model_object.district != ref_address_aux.district) or \
                    (model_object.country_id != ref_address_aux.country_id) or \
                    (model_object.state_id != ref_address_aux.state_id) or \
                    (model_object.city_id != ref_address_aux.city_id):
@@ -495,8 +495,8 @@ class VerificationOutcome(models.Model):
                 if (model_object.zip != ref_address.zip) or \
                    (model_object.street_name != ref_address.street_name) or \
                    (model_object.street_number != ref_address.street_number) or \
+                   (model_object.street_number2 != ref_address.street_number2) or \
                    (model_object.street2 != ref_address.street2) or \
-                   (model_object.district != ref_address.district) or \
                    (model_object.country_id != ref_address.country_id) or \
                    (model_object.state_id != ref_address.state_id) or \
                    (model_object.city_id != ref_address.city_id):
@@ -550,8 +550,8 @@ class VerificationOutcome(models.Model):
                 if (model_object.zip != family.zip) or \
                    (model_object.street_name != family.street_name) or \
                    (model_object.street_number != family.street_number) or \
+                   (model_object.street_number2 != family.street_number2) or \
                    (model_object.street2 != family.street2) or \
-                   (model_object.district != family.district) or \
                    (model_object.country_id != family.country_id) or \
                    (model_object.state_id != family.state_id) or \
                    (model_object.city_id != family.city_id):

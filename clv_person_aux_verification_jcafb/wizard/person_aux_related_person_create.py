@@ -150,13 +150,13 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
 
                             vals['street_number'] = person_aux.street_number
 
+                        if (person_aux.street_number2 is not False):
+
+                            vals['street_number2'] = person_aux.street_number2
+
                         if (person_aux.street2 is not False):
 
                             vals['street2'] = person_aux.street2
-
-                        if (person_aux.district is not False):
-
-                            vals['district'] = person_aux.district
 
                         if (person_aux.country_id.id is not False):
 

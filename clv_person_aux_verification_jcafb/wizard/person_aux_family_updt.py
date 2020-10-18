@@ -105,13 +105,13 @@ class PersonAuxFamilyUpdt(models.TransientModel):
 
                             vals['street_number'] = person_aux.street_number
 
+                        if (person_aux.street_number2 != family.street_number2):
+
+                            vals['street_number2'] = person_aux.street_number2
+
                         if (person_aux.street2 != family.street2):
 
                             vals['street2'] = person_aux.street2
-
-                        if (person_aux.district != family.district):
-
-                            vals['district'] = person_aux.district
 
                         if (person_aux.country_id != family.country_id):
 

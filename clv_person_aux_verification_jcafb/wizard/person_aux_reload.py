@@ -167,13 +167,13 @@ class PersonAuxReload(models.TransientModel):
 
                         vals['street_number'] = related_person.street_number
 
+                    if (person_aux.street_number2 != related_person.street_number2):
+
+                        vals['street_number2'] = related_person.street_number2
+
                     if (person_aux.street2 != related_person.street2):
 
                         vals['street2'] = related_person.street2
-
-                    if (person_aux.district != related_person.district):
-
-                        vals['district'] = related_person.district
 
                     if (person_aux.country_id != related_person.country_id):
 
