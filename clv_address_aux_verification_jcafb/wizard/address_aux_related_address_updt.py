@@ -82,13 +82,13 @@ class AddressAuxRelateAddressUpdt(models.TransientModel):
 
                     vals['street_number'] = address_aux.street_number
 
+                if (address_aux.street_number2 != related_address.street_number2):
+
+                    vals['street_number2'] = address_aux.street_number2
+
                 if (address_aux.street2 != related_address.street2):
 
                     vals['street2'] = address_aux.street2
-
-                if (address_aux.district != related_address.district):
-
-                    vals['district'] = address_aux.district
 
                 if (address_aux.country_id != related_address.country_id):
 
