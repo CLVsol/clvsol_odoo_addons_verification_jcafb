@@ -37,13 +37,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_person_aux_reload_action"
-        name="Person (Aux) Reload"
-        binding_model="clv.person_aux"
-        res_model="clv.person_aux.reload"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_person_aux_reload_action" model="ir.actions.act_window">
+        <field name="name">Person (Aux) Reload</field>
+        <field name="binding_model_id" ref="model_clv_person_aux"/>
+        <field name="res_model">clv.person_aux.reload</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

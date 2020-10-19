@@ -36,13 +36,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_person_aux_related_person_create_action"
-        name="Person (Aux) Related Person Create"
-        binding_model="clv.person_aux"
-        res_model="clv.person_aux.related_person_create"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_person_aux_related_person_create_action" model="ir.actions.act_window">
+        <field name="name">Person (Aux) Related Person Create</field>
+        <field name="binding_model_id" ref="model_clv_person_aux"/>
+        <field name="res_model">clv.person_aux.related_person_create</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
