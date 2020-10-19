@@ -15,6 +15,7 @@
         'clv_verification',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/address_verification.xml',
         'views/verification_outcome_view.xml',
         'wizard/address_mass_edit_view.xml',
