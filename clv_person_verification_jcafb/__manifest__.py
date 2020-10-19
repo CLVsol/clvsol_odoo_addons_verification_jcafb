@@ -15,6 +15,7 @@
         'clv_verification',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/person_verification.xml',
         'views/verification_outcome_view.xml',
         'wizard/person_mass_edit_view.xml',
