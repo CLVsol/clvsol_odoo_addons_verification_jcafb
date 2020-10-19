@@ -15,6 +15,7 @@
         'clv_verification',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/family_verification.xml',
         'data/default_value.xml',
         'views/verification_outcome_view.xml',
