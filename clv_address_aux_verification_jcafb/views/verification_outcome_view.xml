@@ -72,8 +72,8 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="email" position="before">
-                <field name="verification_state"/>
-                <field name="verification_marker_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="verification_state" string="Verification"/>
+                <field name="verification_marker_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </field>
         </field>
     </record>
