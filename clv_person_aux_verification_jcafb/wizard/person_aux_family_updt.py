@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -13,10 +13,13 @@ class PersonAuxFamilyUpdt(models.TransientModel):
     _description = 'Person (Aux) Family Update'
     _name = 'clv.person_aux.family_updt'
 
+    def _default_person_aux_ids(self):
+        return self._context.get('active_ids')
     person_aux_ids = fields.Many2many(
         comodel_name='clv.person_aux',
         relation='clv_person_aux_family_updt_rel',
-        string='Persons (Aux)'
+        string='Persons (Aux)',
+        default=_default_person_aux_ids
     )
 
     update_contact_info_data = fields.Boolean(
@@ -53,14 +56,14 @@ class PersonAuxFamilyUpdt(models.TransientModel):
         }
         return action
 
-    @api.model
-    def default_get(self, field_names):
+    # @api.model
+    # def default_get(self, field_names):
 
-        defaults = super().default_get(field_names)
+    #     defaults = super().default_get(field_names)
 
-        defaults['person_aux_ids'] = self.env.context['active_ids']
+    #     defaults['person_aux_ids'] = self.env.context['active_ids']
 
-        return defaults
+    #     return defaults
 
     def do_person_aux_family_updt(self):
         self.ensure_one()
