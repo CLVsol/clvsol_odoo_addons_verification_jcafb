@@ -8,4 +8,8 @@
 		<field name="name" eval="&quot;&quot;&quot;Default Batch&quot;&quot;&quot;"/>
 	</record>
 	 
+	<record id="clv_verification_batch_default_curr_phase" model="clv.verification.batch">
+		<field name="name" eval="&quot;&quot;&quot;Current Phase - Default Batch&quot;&quot;&quot;"/>
+	</record>
+	 
 </odoo>
