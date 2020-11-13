@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -13,10 +13,13 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
     _description = 'Person (Aux) Related Person Create'
     _name = 'clv.person_aux.related_person_create'
 
+    def _default_person_aux_ids(self):
+        return self._context.get('active_ids')
     person_aux_ids = fields.Many2many(
         comodel_name='clv.person_aux',
         relation='clv_person_aux_related_person_create_rel',
-        string='Persons (Aux)'
+        string='Persons (Aux)',
+        default=_default_person_aux_ids
     )
 
     person_aux_set_code = fields.Boolean(
@@ -51,14 +54,14 @@ class PersonAuxRelatePersonCreate(models.TransientModel):
         }
         return action
 
-    @api.model
-    def default_get(self, field_names):
+    # @api.model
+    # def default_get(self, field_names):
 
-        defaults = super().default_get(field_names)
+    #     defaults = super().default_get(field_names)
 
-        defaults['person_aux_ids'] = self.env.context['active_ids']
+    #     defaults['person_aux_ids'] = self.env.context['active_ids']
 
-        return defaults
+    #     return defaults
 
     def do_person_aux_related_person_create(self):
         self.ensure_one()
