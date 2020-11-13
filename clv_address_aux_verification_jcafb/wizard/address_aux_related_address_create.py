@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -13,10 +13,13 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
     _description = 'Address (Aux) Related Address Create'
     _name = 'clv.address_aux.related_address_create'
 
+    def _default_address_aux_ids(self):
+        return self._context.get('active_ids')
     address_aux_ids = fields.Many2many(
         comodel_name='clv.address_aux',
         relation='clv_address_aux_related_address_create_rel',
-        string='Addresses (Aux)'
+        string='Addresses (Aux)',
+        default=_default_address_aux_ids
     )
 
     address_aux_set_code = fields.Boolean(
@@ -47,14 +50,14 @@ class AddressAuxRelateAddressCreate(models.TransientModel):
         }
         return action
 
-    @api.model
-    def default_get(self, field_names):
+    # @api.model
+    # def default_get(self, field_names):
 
-        defaults = super().default_get(field_names)
+    #     defaults = super().default_get(field_names)
 
-        defaults['address_aux_ids'] = self.env.context['active_ids']
+    #     defaults['address_aux_ids'] = self.env.context['active_ids']
 
-        return defaults
+    #     return defaults
 
     def do_address_aux_related_address_create(self):
         self.ensure_one()
