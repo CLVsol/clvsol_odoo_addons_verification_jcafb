@@ -26,6 +26,11 @@ class Family(models.Model):
         string='Verification Outcomes 2 (count)',
         compute='_compute_verification_outcome_ids_and_count',
     )
+    verification_outcome_infos = fields.Char(
+        string='Verification Outcome Informations',
+        compute='_compute_verification_outcome_infos',
+        store=True
+    )
 
     verification_state = fields.Char(
         string='Verification State',
@@ -59,6 +64,26 @@ class Family(models.Model):
             record.count_verification_outcomes = len(verification_outcomes)
             record.count_verification_outcomes_2 = len(verification_outcomes)
             record.verification_outcome_ids = [(6, 0, verification_outcomes.ids)]
+
+    def _compute_verification_outcome_infos(self):
+        for record in self:
+
+            search_domain = [
+                ('model', '=', self._name),
+                ('res_id', '=', record.id),
+            ]
+
+            verification_outcomes = self.env['clv.verification.outcome'].search(search_domain)
+
+            verification_outcome_infos = False
+            for verification_outcome in verification_outcomes:
+                if verification_outcome.outcome_info is not False:
+                    if verification_outcome_infos is False:
+                        verification_outcome_infos = verification_outcome.outcome_info
+                    else:
+                        verification_outcome_infos = \
+                            verification_outcome_infos + ', ' + verification_outcome.outcome_info
+            record.verification_outcome_infos = verification_outcome_infos
 
     @api.depends('verification_marker_ids')
     def _compute_verification_marker_names(self):
@@ -131,6 +156,8 @@ class Family(models.Model):
                 ('id', '=', family.id),
             ])
             VerificationOutcome._object_verification_outcome_model_object_verification_state_updt(this_family)
+
+            this_family._compute_verification_outcome_infos()
 
 
 class VerificationOutcome(models.Model):

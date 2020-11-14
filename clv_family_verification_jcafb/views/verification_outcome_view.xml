@@ -14,6 +14,8 @@
                 <h1><label for="verification_state" string="Verification State: "/>[<field name="verification_state" style="color:blue; background:White;"/>]</h1>
                 <label for="verification_marker_ids" class="oe_edit_only"/>
                 <h4><field name="verification_marker_ids" widget="many2many_tags" placeholder="Verification Markers..." options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/></h4>
+                <label for="verification_outcome_infos" class="oe_edit_only"/>
+                <h4><field name="verification_outcome_infos" placeholder="Verification Outcome Informations..."/></h4>
             </field>
             <page name="settings" position="before">
                 <page string="Verification Outcomes">
@@ -74,6 +76,7 @@
             <field name="email" position="before">
                 <field name="verification_state" string="Verification"/>
                 <field name="verification_marker_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
+                <field name="verification_outcome_infos" invisible="True"/>
             </field>
         </field>
     </record>
@@ -88,10 +91,12 @@
                 <field name="verification_state"/>
                 <field name="verification_marker_ids"/>
                 <field name="verification_marker_names"/>
+                <field name="verification_outcome_infos"/>
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_verification_state" string="Verification State" context="{'group_by': 'verification_state'}"/>
                 <filter name="filter_verification_marker" string="Verification Markers" context="{'group_by': 'verification_marker_names'}"/>
+                <filter name="grkoup_by_verification_outcome_infos" string="Verification Outcome Informations" context="{'group_by': 'verification_outcome_infos'}"/>
             </group>
         </field>
     </record>
