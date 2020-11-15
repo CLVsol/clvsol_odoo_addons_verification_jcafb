@@ -6,4 +6,5 @@ from . import address_aux_mass_edit
 from . import address_aux_verification_exec
 from . import address_aux_related_address_updt
 from . import address_aux_related_address_create
+from . import address_aux_street_pattern_add
 from . import address_aux_reload

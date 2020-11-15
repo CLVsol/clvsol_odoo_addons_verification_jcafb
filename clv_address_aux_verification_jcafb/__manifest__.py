@@ -5,7 +5,7 @@
 {
     'name': 'Address (Aux) Verification (for CLVhealth-JCAFB Solution)',
     'summary': 'Address (Aux) Verification Module used in CLVhealth-JCAFB Solution.',
-    'version': '12.0.4.0',
+    'version': '14.0.4.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -23,6 +23,7 @@
         'wizard/address_aux_verification_exec_view.xml',
         'wizard/address_aux_related_address_updt_view.xml',
         'wizard/address_aux_related_address_create_view.xml',
+        'wizard/address_aux_street_pattern_add_view.xml',
         'wizard/address_aux_reload_view.xml',
     ],
     'demo': [],
