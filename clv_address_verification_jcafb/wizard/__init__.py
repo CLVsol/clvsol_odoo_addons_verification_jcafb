@@ -4,3 +4,4 @@
 
 from . import address_mass_edit
 from . import address_verification_exec
+from . import address_street_pattern_add

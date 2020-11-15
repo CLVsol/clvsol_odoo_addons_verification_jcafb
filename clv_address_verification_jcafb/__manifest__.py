@@ -5,7 +5,7 @@
 {
     'name': 'Address Verification (for CLVhealth-JCAFB Solution)',
     'summary': 'Address Verification Module used in CLVhealth-JCAFB Solution.',
-    'version': '12.0.4.0',
+    'version': '14.0.4.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -20,6 +20,7 @@
         'views/verification_outcome_view.xml',
         'wizard/address_mass_edit_view.xml',
         'wizard/address_verification_exec_view.xml',
+        'wizard/address_street_pattern_add_view.xml',
     ],
     'demo': [],
     'test': [],
