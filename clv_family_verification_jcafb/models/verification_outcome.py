@@ -300,6 +300,11 @@ class VerificationOutcome(models.Model):
                     outcome_info += _('Address "Phase" mismatch.\n')
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
+                if ref_address.employee_id.id != model_object.employee_id.id:
+
+                    outcome_info += _('Address "Responsible Empĺoyee" mismatch.\n')
+                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
             else:
 
                 outcome_info = _('Missing "Address".')
