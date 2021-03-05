@@ -183,22 +183,6 @@ class PatientAuxRelatePatientCreate(models.TransientModel):
                             if count > 0:
                                 vals['marker_ids'] = m2m_list
 
-                        if (patient_aux.ref_address_is_unavailable is not False):
-
-                            vals['ref_address_is_unavailable'] = patient_aux.ref_address_is_unavailable
-
-                        if (patient_aux.ref_address_id.id is not False):
-
-                            vals['ref_address_id'] = patient_aux.ref_address_id.id
-
-                        if (patient_aux.family_is_unavailable is not False):
-
-                            vals['family_is_unavailable'] = patient_aux.family_is_unavailable
-
-                        if (patient_aux.family_id.id is not False):
-
-                            vals['family_id'] = patient_aux.family_id.id
-
                         if vals != {}:
 
                             vals['reg_state'] = 'revised'
@@ -217,14 +201,10 @@ class PatientAuxRelatePatientCreate(models.TransientModel):
                         patient_aux.write(values)
 
             if self.related_patient_verification_exec:
-                if patient_aux.related_patient_id.ref_address_id.id is not False:
-                    patient_aux.related_patient_id.ref_address_id._address_verification_exec()
                 if patient_aux.related_patient_id.id is not False:
                     patient_aux.related_patient_id._patient_verification_exec()
 
             if self.patient_aux_verification_exec:
-                if patient_aux.ref_address_aux_id.id is not False:
-                    patient_aux.ref_address_aux_id._address_aux_verification_exec()
                 patient_aux._patient_aux_verification_exec()
 
         return True
