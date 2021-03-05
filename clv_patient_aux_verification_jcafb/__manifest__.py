@@ -24,6 +24,7 @@
         'wizard/patient_aux_related_patient_updt_view.xml',
         'wizard/patient_aux_related_patient_create_view.xml',
         'wizard/patient_aux_reload_view.xml',
+        'wizard/patient_aux_street_pattern_add_view.xml',
     ],
     'demo': [],
     'test': [],
