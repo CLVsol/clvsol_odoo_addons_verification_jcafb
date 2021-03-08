@@ -3,3 +3,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import partner_entity_street_pattern
+from . import partner_entity_contact_information_pattern
