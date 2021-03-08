@@ -23,11 +23,11 @@ class PatientStreetPatternAdd(models.TransientModel):
     patient_ids = fields.Many2many(
         comodel_name='clv.patient',
         relation='clv_patient_street_pattern_add_rel',
-        string='Patientes (Aux)',
+        string='Patients',
         default=_default_patient_ids)
-    count_patientes_aux = fields.Integer(
-        string='Number of Patientes (Aux)',
-        compute='_compute_count_patientes_aux',
+    count_patients = fields.Integer(
+        string='Number of Patients',
+        compute='_compute_count_patients',
         store=False
     )
 
@@ -37,9 +37,9 @@ class PatientStreetPatternAdd(models.TransientModel):
     )
 
     @api.depends('patient_ids')
-    def _compute_count_patientes_aux(self):
+    def _compute_count_patients(self):
         for r in self:
-            r.count_patientes_aux = len(r.patient_ids)
+            r.count_patients = len(r.patient_ids)
 
     def _reopen_form(self):
         self.ensure_one()
