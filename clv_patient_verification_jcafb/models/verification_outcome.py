@@ -170,6 +170,7 @@ class VerificationOutcome(models.Model):
         date_verification = datetime.now()
 
         PartnerEntityStreetPattern = self.env['clv.partner_entity.street_pattern']
+        PartnerEntityContactInformationPattern = self.env['clv.partner_entity.contact_information_pattern']
 
         state = 'Ok'
         outcome_info = ''
@@ -230,6 +231,19 @@ class VerificationOutcome(models.Model):
 
                 #     outcome_info += _('Please, verify "Contact Information (Complement)" data.\n')
                 #     state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
+                contact_information_patern = PartnerEntityContactInformationPattern.search([
+                    ('street', '=', model_object.street_name),
+                    ('street_number', '=', model_object.street_number),
+                    ('street_number2', '=', model_object.street_number2),
+                    ('street2', '=', model_object.street2),
+                ])
+
+                if contact_information_patern.street is False:
+
+                    outcome_info += _('"Contact Information Pattern" was not recognised.') + \
+                        ' (' + str(model_object.address_name) + ')\n'
+                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
         if model_object.reg_state not in ['ready', 'done', 'canceled']:
 
