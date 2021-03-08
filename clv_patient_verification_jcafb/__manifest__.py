@@ -20,6 +20,7 @@
         'views/verification_outcome_view.xml',
         'wizard/patient_mass_edit_view.xml',
         'wizard/patient_verification_exec_view.xml',
+        'wizard/patient_street_pattern_add_view.xml',
     ],
     'demo': [],
     'test': [],

@@ -4,3 +4,4 @@
 
 from . import patient_mass_edit
 from . import patient_verification_exec
+from . import patient_street_pattern_add
