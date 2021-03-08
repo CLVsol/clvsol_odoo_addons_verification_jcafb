@@ -23,11 +23,11 @@ class PatientAuxContactInformationPatternAdd(models.TransientModel):
     patient_aux_ids = fields.Many2many(
         comodel_name='clv.patient_aux',
         relation='clv_patient_aux_contact_information_pattern_add_rel',
-        string='Patientes (Aux)',
+        string='Patients (Aux)',
         default=_default_patient_aux_ids)
-    count_patientes_aux = fields.Integer(
-        string='Number of Patientes (Aux)',
-        compute='_compute_count_patientes_aux',
+    count_patients_aux = fields.Integer(
+        string='Number of Patients (Aux)',
+        compute='_compute_count_patients_aux',
         store=False
     )
 
@@ -37,9 +37,9 @@ class PatientAuxContactInformationPatternAdd(models.TransientModel):
     )
 
     @api.depends('patient_aux_ids')
-    def _compute_count_patientes_aux(self):
+    def _compute_count_patients_aux(self):
         for r in self:
-            r.count_patientes_aux = len(r.patient_aux_ids)
+            r.count_patients_aux = len(r.patient_aux_ids)
 
     def _reopen_form(self):
         self.ensure_one()

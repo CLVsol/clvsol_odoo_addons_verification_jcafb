@@ -18,7 +18,7 @@
                 </field>
                 <group>
                     <group>
-                        <field name="count_patientes_aux"/>
+                        <field name="count_patients_aux"/>
                     </group>
                 </group>
                 <group>
