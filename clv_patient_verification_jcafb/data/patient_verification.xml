@@ -16,6 +16,12 @@
 		<field name="action" eval="&quot;&quot;&quot;_patient_verification_patient_aux&quot;&quot;&quot;"/>
 	</record>
 	 
+	<record id="clv_patient_patient_verification_residence_template" model="clv.verification.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.patient [_patient_verification_residence]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.patient&quot;&quot;&quot;"/>
+		<field name="action" eval="&quot;&quot;&quot;_patient_verification_residence&quot;&quot;&quot;"/>
+	</record>
+	 
 	<record id="clv_patient_patient_verification_exec_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.patient [_patient_verification_exec]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.patient&quot;&quot;&quot;"/>

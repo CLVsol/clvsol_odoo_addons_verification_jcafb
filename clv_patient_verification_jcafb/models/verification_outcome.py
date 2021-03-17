@@ -301,3 +301,68 @@ class VerificationOutcome(models.Model):
         verification_values['outcome_info'] = outcome_info
         verification_values['state'] = state
         verification_outcome.write(verification_values)
+
+    def _patient_verification_residence(self, verification_outcome, model_object):
+
+        _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (model_object):', model_object.name)
+
+        date_verification = datetime.now()
+
+        residence = model_object.residence_id
+
+        state = 'Ok'
+        outcome_info = ''
+
+        if model_object.residence_is_unavailable:
+
+            if residence.id is not False:
+
+                outcome_info = _('"Residence" should not be set\n.')
+                state = self._get_verification_outcome_state(state, 'Error (L0)')
+
+            # outcome_info = _('"Residence is Unavailable" should not be set.\n')
+            # state = self._get_verification_outcome_state(state, 'Error (L0)')
+
+        else:
+
+            if residence.id is not False:
+
+                if (model_object.zip != residence.zip) or \
+                   (model_object.street_name != residence.street_name) or \
+                   (model_object.street_number != residence.street_number) or \
+                   (model_object.street_number2 != residence.street_number2) or \
+                   (model_object.street2 != residence.street2) or \
+                   (model_object.country_id != residence.country_id) or \
+                   (model_object.state_id != residence.state_id) or \
+                   (model_object.city_id != residence.city_id):
+
+                    outcome_info += _('Residence "Contact Information" mismatch.')
+                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
+                if residence.phase_id.id != model_object.phase_id.id:
+
+                    outcome_info += _('Residence "Phase" mismatch.\n')
+                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
+                if residence.employee_id.id != model_object.employee_id.id:
+
+                    outcome_info += _('Residence "Responsible Empĺoyee" mismatch.\n')
+                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
+            else:
+
+                outcome_info = _('Missing "Residence".')
+                state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
+        if outcome_info == '':
+            outcome_info = False
+
+        self._object_verification_outcome_updt(
+            verification_outcome, state, outcome_info, date_verification, model_object
+        )
+
+        verification_values = {}
+        verification_values['date_verification'] = date_verification
+        verification_values['outcome_info'] = outcome_info
+        verification_values['state'] = state
+        verification_outcome.write(verification_values)
