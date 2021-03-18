@@ -12,6 +12,25 @@ _logger = logging.getLogger(__name__)
 class PatientMassEdit(models.TransientModel):
     _inherit = 'clv.patient.mass_edit'
 
+    residence_is_unavailable = fields.Boolean(
+        string='Residence is unavailable'
+    )
+    residence_is_unavailable_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Residence is unavailable:', default=False, readonly=False, required=False
+    )
+
+    residence_id = fields.Many2one(
+        comodel_name='clv.address',
+        string='Residence'
+    )
+    residence_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Residence:', default=False, readonly=False, required=False
+    )
+
     verification_marker_ids = fields.Many2many(
         comodel_name='clv.verification.marker',
         relation='clv_patient_mass_edit_verification_marker_rel',
@@ -38,6 +57,16 @@ class PatientMassEdit(models.TransientModel):
         for patient in self.patient_ids:
 
             _logger.info(u'%s %s', '>>>>>', patient.name)
+
+            if self.residence_is_unavailable_selection == 'set':
+                patient.residence_is_unavailable = self.residence_is_unavailable
+            if self.residence_is_unavailable_selection == 'remove':
+                patient.residence_is_unavailable = False
+
+            if self.residence_id_selection == 'set':
+                patient.residence_id = self.residence_id.id
+            if self.residence_id_selection == 'remove':
+                patient.residence_id = False
 
             if self.verification_marker_ids_selection == 'add':
                 m2m_list = []
