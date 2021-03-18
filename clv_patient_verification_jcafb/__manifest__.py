@@ -22,6 +22,7 @@
         'wizard/patient_verification_exec_view.xml',
         'wizard/patient_street_pattern_add_view.xml',
         'wizard/patient_contact_information_pattern_add_view.xml',
+        'wizard/patient_related_residence_updt_view.xml',
     ],
     'demo': [],
     'test': [],
