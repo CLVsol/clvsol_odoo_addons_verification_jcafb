@@ -182,9 +182,6 @@ class VerificationOutcome(models.Model):
                 outcome_info = _('"Contact Information" should not be set.\n')
                 state = self._get_verification_outcome_state(state, 'Error (L0)')
 
-            # outcome_info = _('"Contact Information is Unavailable" should not be set.\n')
-            # state = self._get_verification_outcome_state(state, 'Error (L0)')
-
         else:
 
             if model_object.code is False:
@@ -220,18 +217,6 @@ class VerificationOutcome(models.Model):
                     outcome_info += _('Please, verify "Contact Information (Street)" data.\n')
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
-                # if (model_object.zip is False) or \
-                #    (model_object.street_name is False) or \
-                #    (model_object.street_number is False) or \
-                #    (model_object.street_number2 is False) or \
-                #    (model_object.street2 is False) or \
-                #    (model_object.country_id is False) or \
-                #    (model_object.state_id is False) or \
-                #    (model_object.city_id is False):
-
-                #     outcome_info += _('Please, verify "Contact Information (Complement)" data.\n')
-                #     state = self._get_verification_outcome_state(state, 'Warning (L0)')
-
                 contact_information_patern = PartnerEntityContactInformationPattern.search([
                     ('street', '=', model_object.street_name),
                     ('street_number', '=', model_object.street_number),
@@ -244,28 +229,6 @@ class VerificationOutcome(models.Model):
                     outcome_info += _('"Contact Information Pattern" was not recognised.') + \
                         ' (' + str(model_object.suggested_name) + ')\n'
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
-
-        if outcome_info == '':
-            outcome_info = False
-
-        self._object_verification_outcome_updt(
-            verification_outcome, state, outcome_info, date_verification, model_object
-        )
-
-        verification_values = {}
-        verification_values['date_verification'] = date_verification
-        verification_values['outcome_info'] = outcome_info
-        verification_values['state'] = state
-        verification_outcome.write(verification_values)
-
-    def _residence_verification_residence_aux(self, verification_outcome, model_object):
-
-        _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (model_object):', model_object.name)
-
-        date_verification = datetime.now()
-
-        state = 'Ok'
-        outcome_info = ''
 
         if outcome_info == '':
             outcome_info = False

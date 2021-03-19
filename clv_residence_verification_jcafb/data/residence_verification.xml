@@ -10,12 +10,6 @@
 		<field name="action" eval="&quot;&quot;&quot;_residence_verification&quot;&quot;&quot;"/>
 	</record>
 	 
-	<record id="clv_residence_residence_verification_residence_aux_template" model="clv.verification.template">
-		<field name="name" eval="&quot;&quot;&quot;clv.residence [_residence_verification_residence_aux]&quot;&quot;&quot;"/>
-		<field name="model" eval="&quot;&quot;&quot;clv.residence&quot;&quot;&quot;"/>
-		<field name="action" eval="&quot;&quot;&quot;_residence_verification_residence_aux&quot;&quot;&quot;"/>
-	</record>
-	 
 	<record id="clv_residence_residence_verification_exec_template" model="clv.verification.template">
 		<field name="name" eval="&quot;&quot;&quot;clv.residence [_residence_verification_exec]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.residence&quot;&quot;&quot;"/>
