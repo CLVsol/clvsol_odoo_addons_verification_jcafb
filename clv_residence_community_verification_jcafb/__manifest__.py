@@ -16,6 +16,7 @@
     ],
     'data': [
         'data/address_verification.xml',
+        'data/residence_verification.xml',
     ],
     'demo': [],
     'test': [],
