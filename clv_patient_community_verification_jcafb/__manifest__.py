@@ -16,6 +16,7 @@
     ],
     'data': [
         'data/person_verification.xml',
+        'data/patient_verification.xml',
     ],
     'demo': [],
     'test': [],
