@@ -71,13 +71,10 @@ class VerificationOutcome_2(models.Model):
 
         if model_object.related_address_is_unavailable:
 
-            # if related_address.id is not False:
+            if related_address.id is not False:
 
-            #     outcome_info = _('"Related Address" should not be set\n.')
-            #     state = self._get_verification_outcome_state(state, 'Error (L0)')
-
-            outcome_info = _('"Related Address is Unavailable" should not be set.\n')
-            state = self._get_verification_outcome_state(state, 'Error (L0)')
+                outcome_info = _('"Related Address is Unavailable" should not be set.\n')
+                state = self._get_verification_outcome_state(state, 'Error (L0)')
 
         else:
 
