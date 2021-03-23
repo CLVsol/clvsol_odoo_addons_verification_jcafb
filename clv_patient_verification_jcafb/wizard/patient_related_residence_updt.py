@@ -48,6 +48,10 @@ class PatientResidenceUpdt(models.TransientModel):
 
                     vals['phase_id'] = patient.phase_id.id
 
+                if (patient.employee_id != residence.employee_id):
+
+                    vals['employee_id'] = patient.employee_id.id
+
                 if vals != {}:
 
                     vals['reg_state'] = 'revised'
