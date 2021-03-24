@@ -208,3 +208,9 @@ class VerificationOutcome_2(models.Model):
         self._object_verification_outcome_updt(
             verification_outcome, state, outcome_info, date_verification, model_object
         )
+
+        # verification_values = {}
+        # verification_values['date_verification'] = date_verification
+        # verification_values['outcome_info'] = outcome_info
+        # verification_values['state'] = state
+        # verification_outcome.write(verification_values)
