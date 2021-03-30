@@ -384,13 +384,28 @@ class VerificationOutcome(models.Model):
                         related_person_category_ids.append(category_id.id)
 
                     count_new_category_ids = 0
-                    for category_id in model_object.global_tag_ids:
+                    for category_id in model_object.category_ids:
                         if category_id.id not in related_person_category_ids:
                             count_new_category_ids += 1
 
                     if count_new_category_ids > 0:
                         outcome_info += _('Added "Person Category(ies)".\n')
                         state = self._get_verification_outcome_state(state, 'Warning (L1)')
+
+                # if (related_person.category_ids.id is not False):
+
+                #     model_object_category_ids = []
+                #     for category_id in model_object.category_ids:
+                #         model_object_category_ids.append(category_id.id)
+
+                #     count_new_category_ids = 0
+                #     for category_id in related_person.category_ids:
+                #         if category_id.id not in model_object_category_ids:
+                #             count_new_category_ids += 1
+
+                #     if count_new_category_ids > 0:
+                #         outcome_info += _('Removed "Person Category(ies)".\n')
+                #         state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if (model_object.marker_ids.id is not False):
 
