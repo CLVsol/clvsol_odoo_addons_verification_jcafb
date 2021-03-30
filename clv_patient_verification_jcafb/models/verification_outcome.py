@@ -344,6 +344,11 @@ class VerificationOutcome(models.Model):
                     outcome_info += _('Residence "Phase" mismatch.\n')
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
+                if residence.state != model_object.state:
+
+                    outcome_info += _('Residence "State" mismatch.\n')
+                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+
                 if residence.employee_id.id != model_object.employee_id.id:
 
                     outcome_info += _('Residence "Responsible Empĺoyee" mismatch.\n')
