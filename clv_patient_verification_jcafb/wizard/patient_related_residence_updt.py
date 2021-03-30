@@ -44,6 +44,10 @@ class PatientResidenceUpdt(models.TransientModel):
                 residence = patient.residence_id
                 vals = {}
 
+                if (patient.state != residence.state):
+
+                    vals['state'] = patient.state
+
                 if (patient.phase_id != residence.phase_id):
 
                     vals['phase_id'] = patient.phase_id.id
