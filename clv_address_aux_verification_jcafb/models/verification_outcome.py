@@ -351,8 +351,23 @@ class VerificationOutcome(models.Model):
                             count_new_category_ids += 1
 
                     if count_new_category_ids > 0:
-                        outcome_info += _('Added "Person Category(ies)".\n')
+                        outcome_info += _('Added "Address Category(ies)".\n')
                         state = self._get_verification_outcome_state(state, 'Warning (L1)')
+
+                # if (related_address.category_ids.id is not False):
+
+                #     model_object_category_ids = []
+                #     for category_id in model_object.category_ids:
+                #         model_object_category_ids.append(category_id.id)
+
+                #     count_new_category_ids = 0
+                #     for category_id in related_address.category_ids:
+                #         if category_id.id not in model_object_category_ids:
+                #             count_new_category_ids += 1
+
+                #     if count_new_category_ids > 0:
+                #         outcome_info += _('Removed "Address Category(ies)".\n')
+                #         state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if (model_object.marker_ids.id is not False):
 
@@ -366,7 +381,7 @@ class VerificationOutcome(models.Model):
                             count_new_marker_ids += 1
 
                     if count_new_marker_ids > 0:
-                        outcome_info += _('Added "Person Marker(s)".\n')
+                        outcome_info += _('Added "Address Marker(s)".\n')
                         state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
             else:
