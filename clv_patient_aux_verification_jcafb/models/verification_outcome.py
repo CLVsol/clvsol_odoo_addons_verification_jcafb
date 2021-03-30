@@ -361,17 +361,32 @@ class VerificationOutcome(models.Model):
 
                 if (model_object.category_ids.id is not False):
 
-                    related_patient_global_tag_ids = []
-                    for global_tag_id in related_patient.global_tag_ids:
-                        related_patient_global_tag_ids.append(global_tag_id.id)
+                    related_patient_category_ids = []
+                    for category_id in related_patient.category_ids:
+                        related_patient_category_ids.append(category_id.id)
 
-                    count_new_global_tag_ids = 0
-                    for global_tag_id in model_object.global_tag_ids:
-                        if global_tag_id.id not in related_patient_global_tag_ids:
-                            count_new_global_tag_ids += 1
+                    count_new_category_ids = 0
+                    for category_id in model_object.category_ids:
+                        if category_id.id not in related_patient_category_ids:
+                            count_new_category_ids += 1
 
-                    if count_new_global_tag_ids > 0:
+                    if count_new_category_ids > 0:
                         outcome_info += _('Added "Patient Category(ies)".\n')
+                        state = self._get_verification_outcome_state(state, 'Warning (L1)')
+
+                if (related_patient.category_ids.id is not False):
+
+                    model_object_category_ids = []
+                    for category_id in model_object.category_ids:
+                        model_object_category_ids.append(category_id.id)
+
+                    count_new_category_ids = 0
+                    for category_id in related_patient.category_ids:
+                        if category_id.id not in model_object_category_ids:
+                            count_new_category_ids += 1
+
+                    if count_new_category_ids > 0:
+                        outcome_info += _('Removed "Patient Category(ies)".\n')
                         state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if (model_object.marker_ids.id is not False):
