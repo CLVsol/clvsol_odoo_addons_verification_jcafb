@@ -413,7 +413,7 @@ class VerificationOutcome(models.Model):
             else:
 
                 outcome_info = _('Missing "Related Patient".\n')
-                state = self._get_verification_outcome_state(state, 'Error (L0)')
+                state = self._get_verification_outcome_state(state, 'Error (L1)')
 
         if outcome_info == '':
             outcome_info = False
