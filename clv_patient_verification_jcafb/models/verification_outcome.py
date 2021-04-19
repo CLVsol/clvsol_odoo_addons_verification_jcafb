@@ -283,11 +283,11 @@ class VerificationOutcome(models.Model):
 
         if len(patient_aux_ids) == 0:
             outcome_info = _('Missing related "Patient (Aux)" register.')
-            state = self._get_verification_outcome_state(state, 'Error (L0)')
+            state = self._get_verification_outcome_state(state, 'Error (L1)')
 
         if len(patient_aux_ids) > 1:
             outcome_info = _('There are more than one related "Patient (Aux)" register.')
-            state = self._get_verification_outcome_state(state, 'Error (L0)')
+            state = self._get_verification_outcome_state(state, 'Error (L1)')
 
         if outcome_info == '':
             outcome_info = False
@@ -337,22 +337,22 @@ class VerificationOutcome(models.Model):
                    (model_object.city_id != residence.city_id):
 
                     outcome_info += _('Residence "Contact Information" mismatch.')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if residence.phase_id.id != model_object.phase_id.id:
 
                     outcome_info += _('Residence "Phase" mismatch.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if residence.state != model_object.state:
 
                     outcome_info += _('Residence "State" mismatch.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if residence.employee_id.id != model_object.employee_id.id:
 
                     outcome_info += _('Residence "Responsible Empĺoyee" mismatch.\n')
-                    state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                    state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
                 if model_object.residence_id.verification_state != 'Ok':
 
@@ -363,7 +363,7 @@ class VerificationOutcome(models.Model):
             else:
 
                 outcome_info = _('Missing "Residence".')
-                state = self._get_verification_outcome_state(state, 'Warning (L0)')
+                state = self._get_verification_outcome_state(state, 'Warning (L1)')
 
         if outcome_info == '':
             outcome_info = False
