@@ -81,15 +81,14 @@ class PatientAuxRelatePatientUpdt(models.TransientModel):
                     if count > 0:
                         vals['global_tag_ids'] = m2m_list
 
-                if (patient_aux.category_ids.id is not False):
+                if (patient_aux.category_ids != related_patient.category_ids):
 
                     m2m_list = []
-                    count = 0
-                    for global_tag_id in patient_aux.category_ids:
-                        m2m_list.append((4, global_tag_id.id))
-                        count += 1
-
-                    if count > 0:
+                    for category_id in related_patient.category_ids:
+                        m2m_list.append((3, category_id.id))
+                    for category_id in patient_aux.category_ids:
+                        m2m_list.append((4, category_id.id))
+                    if m2m_list != []:
                         vals['category_ids'] = m2m_list
 
                 if (patient_aux.marker_ids.id is not False):
